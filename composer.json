@@ -1,4 +1,7 @@
 {
+    "config" : {
+        "vendor-dir" : "web/vendor"
+    },
     "require": {
         "mustache/mustache": "~2.7",
         "slim/slim" : "2.*",

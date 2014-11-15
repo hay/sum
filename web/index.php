@@ -1,4 +1,10 @@
 <?php
+    define('ABSPATH', dirname(__FILE__));
+
+    if (!file_exists(ABSPATH . '/config.php')) {
+        die("Please create a config.php file. Use config-sample.php as an example.");
+    }
+
     require 'config.php';
     require 'lib/class-properties.php';
     require 'lib/class-page.php';

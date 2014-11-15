@@ -1,2 +1,2 @@
 #!/bin/bash
-rsync -av --exclude ".git" --exclude ".sass-cache" ../web/* pris:/var/www/sum.bykr.org/htdocs/
+rsync -avz --exclude ".git" --exclude ".sass-cache" ../web/* pris:/var/www/sum.bykr.org/htdocs/
