@@ -1,0 +1,7 @@
+{
+    "require": {
+        "mustache/mustache": "~2.7",
+        "slim/slim" : "2.*",
+        "nategood/httpful": "*"
+    }
+}
