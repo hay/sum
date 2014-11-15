@@ -1,6 +1,6 @@
 Sum
 ===
-The sum of all paintings, powered by Wikidata
+[The sum of all paintings](https://www.wikidata.org/wiki/Wikidata:WikiProject_sum_of_all_paintings), powered by [Wikidata](http://www.wikidata.org).
 
 ## Installing
 To install the dependencies for this project you need [bower](http://bower.io) (for frontend assets) and [Composer](http://getcomposer.org) (for PHP libraries).
@@ -14,4 +14,4 @@ Then, in the root of the project, install the dependencies
 
 You should be able to run the application in `web/` now.
 
-Note that you either need `mod_rewrite` (for Apache) or some redirection magic for nginx to get the pretty urls.
+Note that you either need `mod_rewrite` (for Apache) or some other redirection magic to get pretty urls.
