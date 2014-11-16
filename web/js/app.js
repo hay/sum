@@ -1,32 +1,46 @@
+var $itemImageContainer = $('.item-image-container');
 var $itemImage = $(".item-image");
-var $itemImageImg = $itemImage.find("img");
+var src = $itemImage.data('src');
+var cWidth = $itemImageContainer.width();
+var cHeight = $itemImageContainer.height();
+var $img;
 
-// Why?
 var img = new Image();
 
 img.onload = function() {
-    $itemImage.css({
-        width : img.width,
-        height : img.height
+    $img = $(img);
+    var aspect = cHeight / cWidth;
+    var newHeight = img.height * aspect;
+
+    $img.css({
+        width : cWidth,
     });
 
-    $itemImageImg.css({
-        width : $(window).width()
-    })
+    $itemImage.css({
+        width : cWidth,
+        height : newHeight,
+        marginTop : -(newHeight / 4)
+    });
 
-    $itemImage.css('margin-top', -(img.height / 3));
+    $itemImage.append(img);
+
+    setTimeout(function() {
+        $img.addClass('item-image-loaded');
+    }, 0);
 };
 
-img.src = $itemImageImg.attr('src');
+img.src = src;
 
 $(".btn-zoom").on('click', function() {
     if ($(this).hasClass('btn-zoom-zoomed')) {
-        $itemImageImg.get(0).dispatchEvent(
+        $img.get(0).dispatchEvent(
             new CustomEvent('wheelzoom.destroy')
         );
+
         $(this).removeClass('btn-zoom-zoomed');
     } else {
-        wheelzoom( $itemImageImg.get(0) );
+        wheelzoom( $img.get(0) );
+
         $(this).addClass('btn-zoom-zoomed');
     }
 });

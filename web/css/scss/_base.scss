@@ -11,6 +11,12 @@ html, body, .full-screen {
 .item-image {
     img {
         display: block;
+        opacity: 0;
+        @include transition(1s);
+    }
+
+    img.item-image-loaded {
+        opacity : 1;
     }
 }
 
