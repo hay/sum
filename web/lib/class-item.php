@@ -118,8 +118,11 @@ class Item extends Page {
     }
 
     public function parseLongDescription() {
-        if (!isset($this->item->sitelinks)) {
+        // Using empty / isset doesn't fucking work on Objects.
+        // Stupid PHP
+        if (!isset($this->item->sitelinks) || empty((array) $this->item->sitelinks)) {
             $this->longdescription = false;
+            return;
         }
 
         $title = urlencode($this->item->sitelinks->{$this->lang}->title);
@@ -136,7 +139,7 @@ class Item extends Page {
     public function title() {
         $title = $this->label;
 
-        if ($this->label) {
+        if ($this->label && $this->creator) {
             $title .= " by ";
         }
 
