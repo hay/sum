@@ -1,7 +1,36 @@
 {{> header}}
-<div class="container-fluid">
-    <h1>{{label}}</h1>
-    <img src="{{thumb}}">
-    <p>{{description}}</p>
+
+<div class="full-screen item-image-container">
+    <div class="item-image">
+        <img src="{{image}}">
+    </div>
+
+    <button class="btn btn-primary btn-zoom">
+        <span class="glyphicon glyphicon-zoom-in"></span>
+        <span class="glyphicon glyphicon-zoom-out"></span>
+
+        Zoom and pan
+    </button>
+ ></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <h1>{{title}}</h1>
+
+            <p class="text-muted">{{method}}</p>
+
+            <p class="lead">{{description}}</p>
+        </div>
+
+        <div class="col-md-2">
+            <br><br>
+            <a href="{{image}}" class="btn btn-primary btn-large">
+                <span class="glyphicon glyphicon-download"></span>
+                Download
+            </a>
+        </div>
+    </div>
 </div>
+
 {{> footer}}

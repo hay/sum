@@ -4,8 +4,6 @@
     "dependencies" : {
         "bootstrap" : "3.3.*",
         "fastclick" : "1.*",
-        "jquery" : "2.1.*",
-        "moment" : "2.8.*",
-        "underscore" : "1.6.*"
+        "jquery" : "2.1.*"
     }
 }

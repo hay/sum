@@ -33,6 +33,7 @@
             $item = new Item($id);
         } catch (Exception $e) {
             echo $renderer->render("404", new Page());
+            error_log($e->getMessage());
             return;
         }
 
