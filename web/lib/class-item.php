@@ -8,7 +8,7 @@ class Item extends Page {
     private $item;
 
     public $claims, $label, $id, $description, $image, $thumb, $creator, $year;
-    public $longdescription;
+    public $longdescription, $creatorId = false;
     public $error = false;
 
     function __construct($qid) {
@@ -33,6 +33,14 @@ class Item extends Page {
         $this->parseDate();
         $this->parseLongDescription();
         $this->creator = $this->getClaimLabel(Properties::CREATOR);
+
+        $creatorId = $this->getClaim(Properties::CREATOR);
+
+        // TODO: refactor
+        if ($creatorId) {
+            $this->creatorId = $creatorId->values[0]->value;
+        }
+
         $this->country = $this->getClaimLabel(Properties::COUNTRY);
         $this->instanceOf = $this->getClaimLabel(Properties::INSTANCE_OF);
         $this->movement = $this->getClaimLabel(Properties::MOVEMENT);

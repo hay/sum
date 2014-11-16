@@ -31,11 +31,22 @@ html, body, .full-screen {
 .header-image {
     height: 300px;
     width: 100%;
+    background-color: #000;
 }
 
 .header-image-avatar {
     width: 250px;
     height: 250px;
+    border: 5px solid white;
+    margin-top: 30px;
+    background-color: $bootstrap-blue;
+}
+
+.header-image-text {
+    padding: 0 15px;
+    background: rgba(255, 255, 255, 0.7);
+    display: inline-block;
+    margin-top: 30px;
 }
 
 .item-image-container {

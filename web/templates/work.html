@@ -60,6 +60,16 @@
             {{^longdescription}}
             <div class="col-md-12">
             {{/longdescription}}
+
+                {{#creator}}
+                <a href="creator/{{creatorId}}" class="btn btn-primary btn-lg">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                     See more works by <strong>{{creator}}</strong>
+                </a>
+                {{/creator}}
+
+                <br><br>
+
                 <div class="dl-horizontal">
                     {{#museum}}
                     <dt>Museum</dt>
