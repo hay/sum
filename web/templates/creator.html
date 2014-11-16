@@ -1,0 +1,53 @@
+{{> header}}
+
+<div class="header-image" style="background-image:url({{image}})">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="header-image-avatar"
+                     style="background-image:url({{avatar}})"></div>
+            </div>
+
+            <div class="col-md-8">
+                <h1>{{title}}</h1>
+                <h3 class="text-muted">
+                    {{placeOfBirth}}, {{dateOfBirth}}
+                    -
+                    {{placeOfDeath}}, {{dateOfDeath}}
+                </h3>
+                <p class="lead">{{description}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-dark bg-spaced">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <p class="lead">{{longdescription}}</p>
+            </div>
+
+            <div class="col-md-4">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-light bg-spaced">
+    <div class="container">
+        <div class="row">
+            <h2 class="text-center">Works by {{title}}</h2>
+
+            {{#items}}
+            <div class="col-md-3">
+                <img src="{{.image}}">
+                {{.title}}
+            </div>
+            {{/items}}
+        </div>
+    </div>
+</div>
+
+{{> footer}}
