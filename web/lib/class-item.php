@@ -2,7 +2,7 @@
 use \Httpful\Request;
 
 class Item extends Page {
-    const API_ENDPOINT = "http://chantek.bykr.org/wikidata/entity?q=%s&resolveimages=1";
+    const API_ENDPOINT = "http://chantek.bykr.org/wikidata/entity?q=%s&resolveimages=1&imagewidth=2000&imageheight=2000";
 
     public $claims, $label, $id, $description, $image, $thumb, $creator, $year;
     public $error = false;
@@ -18,12 +18,10 @@ class Item extends Page {
 
         $item = $res->body->response->{'Q' . $qid};
 
-        // print_r($item);
-
         $this->claims = $item->claims;
-        $this->label = $item->labels;
+        $this->label = isset($item->labels) ? $item->labels : false;
+        $this->description = isset($item->descriptions) ? $item->descriptions : false;
         $this->id = $qid;
-        $this->description = $item->descriptions;
 
         $this->parseImage();
         $this->parseDate();
@@ -31,8 +29,10 @@ class Item extends Page {
     }
 
     private function getCreator() {
-        $creator = $this->getClaim(Properties::CREATOR)->values[0];
-        return $creator->value_labels;
+        $creator = $this->getClaim(Properties::CREATOR);
+        if (!$creator) return;
+
+        return $creator->values[0]->value_labels;
     }
 
     // HACK: This is really, pretty ugly
@@ -43,8 +43,11 @@ class Item extends Page {
     }
 
     private function parseDate() {
-        $date = $this->getClaim(Properties::DATE)->values[0];
-        $time = strtotime( $this->parseProlepticDate($date->value->time) );
+        $date = $this->getClaim(Properties::DATE);
+
+        if (!$date) return;
+
+        $time = strtotime( $this->parseProlepticDate($date->values[0]->value->time) );
         $this->year = date("Y", $time);
     }
 
@@ -63,7 +66,7 @@ class Item extends Page {
     private function parseImage() {
         $image = $this->getClaim(Properties::IMAGE);
 
-        if ($image) {
+        if ($image && $image->values[0] && isset($image->values[0]->image)) {
             $image = $image->values[0]->image;
             $this->image = $image->url;
             $this->thumb = $image->thumburl;
@@ -77,12 +80,16 @@ class Item extends Page {
     public function title() {
         $title = $this->label;
 
+        if ($this->label) {
+            $title .= " by ";
+        }
+
         if ($this->creator) {
-            $title .= ", $this->creator";
+            $title .= $this->creator;
         }
 
         if ($this->year) {
-            $title .= ", $this->year";
+            $title .= " ($this->year)";
         }
 
         return $title;

@@ -19,7 +19,7 @@ img.onload = function() {
     $itemImage.css({
         width : cWidth,
         height : newHeight,
-        marginTop : -(newHeight / 4)
+        marginTop : -(cHeight / 4)
     });
 
     $itemImage.append(img);

@@ -28,13 +28,28 @@
 
     $app = new \Slim\Slim();
 
-    $app->get("/item/:id", function($id) use ($renderer) {
+    $app->get("/", function() use ($renderer) {
+        echo $renderer->render("home", new Page());
+    });
+
+    $app->get("/item/:id", function($id) use ($renderer, $app) {
+        // Check for Q items
+        if (strtolower($id[0]) == "q") {
+            // FIXME: why do we need PATH here?
+            $app->redirect(PATH . "/item/" . substr($id, 1));
+        }
+
         try {
             $item = new Item($id);
         } catch (Exception $e) {
             echo $renderer->render("404", new Page());
             error_log($e->getMessage());
-            return;
+
+            if (DEBUG) {
+                throw $e;
+            } else {
+                return;
+            }
         }
 
         echo $renderer->render("item", $item);

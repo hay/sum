@@ -1,15 +1,23 @@
 {{> header}}
 
-<div class="full-screen item-image-container">
-    <div class="item-image" data-src="{{image}}"></div>
+{{#image}}
+    <div class="full-screen item-image-container">
+        <div class="item-image" data-src="{{image}}"></div>
 
-    <button class="btn btn-primary btn-zoom">
-        <span class="glyphicon glyphicon-zoom-in"></span>
-        <span class="glyphicon glyphicon-zoom-out"></span>
+        <button class="btn btn-default btn-lg btn-zoom">
+            <span class="glyphicon glyphicon-zoom-in"></span>
+            <span class="glyphicon glyphicon-zoom-out"></span>
 
-        Zoom and pan
-    </button>
- ></div>
+            Zoom and pan
+        </button>
+     </div>
+{{/image}}
+
+{{^image}}
+<div class="container">
+    <h1>No image available.</h1>
+</div>
+{{/image}}
 
 <div class="container">
     <div class="row">
@@ -23,7 +31,7 @@
 
         <div class="col-md-2">
             <br><br>
-            <a href="{{image}}" class="btn btn-primary btn-large">
+            <a href="{{image}}" class="btn btn-primary btn-lg">
                 <span class="glyphicon glyphicon-download"></span>
                 Download
             </a>
