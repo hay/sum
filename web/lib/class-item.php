@@ -45,9 +45,9 @@ class Item extends Page {
         $this->iconclass = $this->getClaimLabel(Properties::ICONCLASS);
     }
 
-    private function getClaimLabel($pid) {
+    protected function getClaimValue($pid) {
         $claim = $this->getClaim($pid);
-        if (!$claim) return;
+        if (!$claim) return false;
 
         $labels = array_map(function($value) {
             if (isset($value->value_labels)) {
@@ -64,7 +64,33 @@ class Item extends Page {
         // Remove empty labels
         $labels = array_filter($labels);
 
-        return implode(", ", $labels);
+        return $labels;
+    }
+
+    protected function getClaimLabel($pid) {
+        $labels = $this->getClaimValue($pid);
+
+        if ($labels) {
+            return implode(", ", $labels);
+        } else {
+            return false;
+        }
+    }
+
+    protected function getClaimDate($pid, $format = false) {
+        $date = $this->getClaimValue($pid);
+
+        if (empty($date)) {
+            return false;
+        }
+
+        $time = strtotime( $this->parseProlepticDate($date[0]->time) );
+
+        if ($format) {
+            return date($format, $time);
+        } else {
+            return $time;
+        }
     }
 
     // HACK: This is really, pretty ugly

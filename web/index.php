@@ -6,10 +6,12 @@
     }
 
     require 'config.php';
+    require 'vendor/autoload.php';
     require 'lib/class-properties.php';
     require 'lib/class-page.php';
     require 'lib/class-item.php';
-    require 'vendor/autoload.php';
+    require 'lib/class-work.php';
+    require 'lib/class-creator.php';
 
     $templatePath = ABSPATH . "/templates";
 
@@ -32,15 +34,23 @@
         echo $renderer->render("home", new Page());
     });
 
-    $app->get("/item/:id", function($id) use ($renderer, $app) {
+    function renderPage($id, $page) {
+        global $app, $renderer;
+
         // Check for Q items
         if (strtolower($id[0]) == "q") {
             // FIXME: why do we need PATH here?
-            $app->redirect(PATH . "/item/" . substr($id, 1));
+            $app->redirect(PATH . "/$page/" . substr($id, 1));
         }
 
         try {
-            $item = new Item($id);
+            if ($page == "work") {
+                $item = new Work($id);
+            }
+
+            if ($page == "creator") {
+                $item = new Creator($id);
+            }
         } catch (Exception $e) {
             echo $renderer->render("404", new Page());
             error_log($e->getMessage());
@@ -52,8 +62,15 @@
             }
         }
 
-        echo $renderer->render("item", $item);
+        echo $renderer->render($page, $item);
+    }
 
+    $app->get("/creator/:id", function($id) {
+        renderPage($id, "creator");
+    });
+
+    $app->get("/work/:id", function($id) {
+        renderPage($id, "work");
     });
 
     $app->run();

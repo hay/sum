@@ -21,6 +21,23 @@ html, body, .full-screen {
     padding-bottom: 5px;
 }
 
+.header-image, .header-image-avatar {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    overflow: hidden;
+}
+
+.header-image {
+    height: 300px;
+    width: 100%;
+}
+
+.header-image-avatar {
+    width: 250px;
+    height: 250px;
+}
+
 .item-image-container {
     background-color: black;
     overflow: hidden;
@@ -41,6 +58,9 @@ html, body, .full-screen {
 .bg-light {
     background: #eee;
     color: #333;
+}
+
+.bg-spaced {
     padding-top: 20px;
     padding-bottom: 20px;
 }

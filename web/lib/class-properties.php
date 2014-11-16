@@ -13,4 +13,8 @@ class Properties {
     const INVENTORYNR = "P217";
     const LOCATEDIN = "P276";
     const ICONCLASS = "P1257";
+    const PLACEOFBIRTH = "P19";
+    const PLACEOFDEATH = "P20";
+    const DATEOFBIRTH = "P569";
+    const DATEOFDEATH = "P570";
 }
