@@ -2,14 +2,19 @@
 use \Httpful\Request;
 
 class Item extends Page {
-    const API_ENDPOINT = "http://chantek.bykr.org/wikidata/entity?q=%s&resolveimages=1&imagewidth=2000&imageheight=2000";
+    const WIKIDATA_ENDPOINT = "%s/wikidata/entity?q=%s&resolveimages=1&imagewidth=2000&imageheight=2000&lang=%s";
+    const WIKIPEDIA_ENDPOINT = "%s/wikipedia/define?q=%s&lang=%s";
+
+    private $item;
 
     public $claims, $label, $id, $description, $image, $thumb, $creator, $year;
+    public $longdescription;
     public $error = false;
 
     function __construct($qid) {
         parent::__construct();
-        $url = sprintf(self::API_ENDPOINT, $qid);
+        $wikidataEndpoint = sprintf(self::WIKIDATA_ENDPOINT, API_ENDPOINT, $qid, $this->lang);
+        $url = sprintf($wikidataEndpoint, $qid);
         $res = Request::get($url)->send();
 
         if (!$res->body->response) {
@@ -18,6 +23,7 @@ class Item extends Page {
 
         $item = $res->body->response->{'Q' . $qid};
 
+        $this->item = $item;
         $this->claims = $item->claims;
         $this->label = isset($item->labels) ? $item->labels : false;
         $this->description = isset($item->descriptions) ? $item->descriptions : false;
@@ -25,14 +31,40 @@ class Item extends Page {
 
         $this->parseImage();
         $this->parseDate();
-        $this->creator = $this->getCreator();
+        $this->parseLongDescription();
+        $this->creator = $this->getClaimLabel(Properties::CREATOR);
+        $this->country = $this->getClaimLabel(Properties::COUNTRY);
+        $this->instanceOf = $this->getClaimLabel(Properties::INSTANCE_OF);
+        $this->movement = $this->getClaimLabel(Properties::MOVEMENT);
+        $this->genre = $this->getClaimLabel(Properties::GENRE);
+        $this->depicts = $this->getClaimLabel(Properties::DEPICTS);
+        $this->materialsUsed = $this->getClaimLabel(Properties::MATERIALSUSED);
+        $this->collection = $this->getClaimLabel(Properties::COLLECTION);
+        $this->inventoryNr = $this->getClaimLabel(Properties::INVENTORYNR);
+        $this->locatedIn = $this->getClaimLabel(Properties::LOCATEDIN);
+        $this->iconclass = $this->getClaimLabel(Properties::ICONCLASS);
     }
 
-    private function getCreator() {
-        $creator = $this->getClaim(Properties::CREATOR);
-        if (!$creator) return;
+    private function getClaimLabel($pid) {
+        $claim = $this->getClaim($pid);
+        if (!$claim) return;
 
-        return $creator->values[0]->value_labels;
+        $labels = array_map(function($value) {
+            if (isset($value->value_labels)) {
+                return $value->value_labels;
+            }
+
+            if (isset($value->value)) {
+                return $value->value;
+            }
+
+            return false;
+        }, $claim->values);
+
+        // Remove empty labels
+        $labels = array_filter($labels);
+
+        return implode(", ", $labels);
     }
 
     // HACK: This is really, pretty ugly
@@ -74,6 +106,30 @@ class Item extends Page {
             // TODO: placeholder image
             $this->image = false;
             $this->thumb = false;
+        }
+    }
+
+    public function museum() {
+        if ($this->collection == $this->locatedIn) {
+            return $this->collection;
+        } else {
+            return false;
+        }
+    }
+
+    public function parseLongDescription() {
+        if (!isset($this->item->sitelinks)) {
+            $this->longdescription = false;
+        }
+
+        $title = urlencode($this->item->sitelinks->{$this->lang}->title);
+
+        $wikipediaEndpoint = sprintf(self::WIKIPEDIA_ENDPOINT, API_ENDPOINT, $title, $this->lang);
+
+        $req = Request::get($wikipediaEndpoint)->send();
+
+        if (isset($req->body->response->extract)) {
+            $this->longdescription = $req->body->response->extract;
         }
     }
 

@@ -7,8 +7,6 @@
         <button class="btn btn-default btn-lg btn-zoom">
             <span class="glyphicon glyphicon-zoom-in"></span>
             <span class="glyphicon glyphicon-zoom-out"></span>
-
-            Zoom and pan
         </button>
      </div>
 {{/image}}
@@ -19,22 +17,108 @@
 </div>
 {{/image}}
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-10">
-            <h1>{{title}}</h1>
+<div class="bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h1>{{title}}</h1>
 
-            <p class="text-muted">{{method}}</p>
+                <p class="text-muted">{{method}}</p>
 
-            <p class="lead">{{description}}</p>
+                <p class="lead">{{description}}</p>
+            </div>
+
+            <div class="col-md-3">
+                <br><br>
+                <a href="{{image}}" class="btn btn-primary btn-lg">
+                    <span class="glyphicon glyphicon-download"></span>
+                    Download
+                </a>
+
+                <a href="http://wikidata.org/wiki/Q{{id}}" class="btn btn-primary btn-lg">
+                    <span class="glyphicon glyphicon-barcode"></span>
+                    Edit
+                </a>
+            </div>
         </div>
+    </div>
+</div>
 
-        <div class="col-md-2">
-            <br><br>
-            <a href="{{image}}" class="btn btn-primary btn-lg">
-                <span class="glyphicon glyphicon-download"></span>
-                Download
-            </a>
+<div class="bg-light">
+    <div class="container">
+        <div class="row">
+            {{#longdescription}}
+            <div class="col-md-6">
+                <p class="lead">{{longdescription}}</p>
+            </div>
+            {{/longdescription}}
+
+            {{#longdescription}}
+            <div class="col-md-6">
+            {{/longdescription}}
+
+            {{^longdescription}}
+            <div class="col-md-8 col-md-offset-2">
+            {{/longdescription}}
+                <div class="dl-horizontal">
+                    {{#museum}}
+                    <dt>Museum</dt>
+                    <dd>{{museum}}</dd>
+                    {{/museum}}
+
+                    {{^museum}}
+                        {{#locatedIn}}
+                        <dt>Located in</dt>
+                        <dd>{{locatedIn}}</dd>
+                        {{/locatedIn}}
+
+                        {{#collection}}
+                        <dt>Collection</dt>
+                        <dd>{{collection}}</dd>
+                        {{/collection}}
+                    {{/museum}}
+
+                    {{#country}}
+                    <dt>Country</dt>
+                    <dd>{{country}}</dd>
+                    {{/country}}
+
+                    {{#instanceOf}}
+                    <dt>Type of item</dt>
+                    <dd>{{instanceOf}}</dd>
+                    {{/instanceOf}}
+
+                    {{#movement}}
+                    <dt>Movement</dt>
+                    <dd>{{movement}}</dd>
+                    {{/movement}}
+
+                    {{#genre}}
+                    <dt>Genre</dt>
+                    <dd>{{genre}}</dd>
+                    {{/genre}}
+
+                    {{#depicts}}
+                    <dt>People on this painting</dt>
+                    <dd>{{depicts}}</dd>
+                    {{/depicts}}
+
+                    {{#materialsUsed}}
+                    <dt>Materials used</dt>
+                    <dd>{{materialsUsed}}</dd>
+                    {{/materialsUsed}}
+
+                    {{#inventoryNr}}
+                    <dt>Inventory number</dt>
+                    <dd>{{inventoryNr}}</dd>
+                    {{/inventoryNr}}
+
+                    {{#iconclass}}
+                    <dt>Iconclass code</dt>
+                    <dd>{{iconclass}}</dd>
+                    {{/iconclass}}
+                </div>
+            </div>
         </div>
     </div>
 </div>
