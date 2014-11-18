@@ -10,7 +10,10 @@ class Item extends Page {
     private $item;
 
     public $claims, $label, $id, $description, $image, $thumb, $creator, $year;
-    public $longdescription, $creatorId = false;
+
+    // TODO: this valId nonsense should be refactored
+    public $longdescription, $creatorId = false, $institutionId = false;
+    public $collectionId = false, $locatedInId = false;
     public $error = false;
 
     function __construct($qid, $thumbSize = self::DEFAULT_THUMB_SIZE) {
@@ -45,12 +48,9 @@ class Item extends Page {
         $this->parseLongDescription();
         $this->creator = $this->getClaimLabel(Properties::CREATOR);
 
-        $creatorId = $this->getClaim(Properties::CREATOR);
-
-        // TODO: refactor
-        if ($creatorId) {
-            $this->creatorId = $creatorId->values[0]->value;
-        }
+        $this->creatorId = $this->getClaimId(Properties::CREATOR);
+        $this->locatedInId = $this->getClaimId(Properties::LOCATEDIN);
+        $this->collectionId = $this->getClaimId(Properties::COLLECTION);
 
         $this->country = $this->getClaimLabel(Properties::COUNTRY);
         $this->instanceOf = $this->getClaimLabel(Properties::INSTANCE_OF);
@@ -62,6 +62,16 @@ class Item extends Page {
         $this->inventoryNr = $this->getClaimLabel(Properties::INVENTORYNR);
         $this->locatedIn = $this->getClaimLabel(Properties::LOCATEDIN);
         $this->iconclass = $this->getClaimLabel(Properties::ICONCLASS);
+    }
+
+    protected function getClaimId($pid) {
+        $claim = $this->getClaim($pid);
+
+        if ($claim) {
+            return $claim->values[0]->value;
+        } else {
+            return false;
+        }
     }
 
     protected function getClaimValue($pid) {
@@ -154,12 +164,26 @@ class Item extends Page {
         }
     }
 
-    public function museum() {
-        if ($this->collection == $this->locatedIn) {
+    public function hasInstitution() {
+        return $this->collection == $this->locatedIn;
+    }
+
+    public function institution() {
+        if ($this->collection === $this->locatedIn) {
             return $this->collection;
-        } else {
-            return false;
         }
+
+        // TODO: should collection or locatedIn have preference?
+        // We choose collection for now
+        if ($this->collection && $this->locatedIn || $this->collection) {
+            return $this->collection;
+        }
+
+        if ($this->institution) {
+            return $this->institution;
+        }
+
+        return false;
     }
 
     public function parseLongDescription() {

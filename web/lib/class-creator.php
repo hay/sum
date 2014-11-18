@@ -1,10 +1,6 @@
 <?php
-use \Httpful\Request;
-
 class Creator extends Item {
-    const WIKIDATA_QUERY_ENDPOINT = "%s/wikidata/query?q=%s&lang=%s&from=0&size=4";
-
-    public $avatar, $placeOfBirth, $placeOfDeath, $works;
+    public $placeOfBirth, $placeOfDeath, $works;
 
     function __construct($qid) {
         parent::__construct($qid);

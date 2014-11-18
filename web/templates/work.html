@@ -71,22 +71,34 @@
                 <br><br>
 
                 <div class="dl-horizontal">
-                    {{#museum}}
-                    <dt>Museum</dt>
-                    <dd>{{museum}}</dd>
-                    {{/museum}}
+                    {{#hasInstitution}}
+                    <dt>Institution</dt>
+                    <dd>
+                        <a href="institution/{{collectionId}}">
+                            {{institution}}
+                        </a>
+                    </dd>
+                    {{/hasInstitution}}
 
-                    {{^museum}}
+                    {{^hasInstitution}}
                         {{#locatedIn}}
                         <dt>Located in</dt>
-                        <dd>{{locatedIn}}</dd>
+                        <dd>
+                            <a href="institution/{{locatedInId}}">
+                                {{locatedIn}}
+                            </a>
+                        </dd>
                         {{/locatedIn}}
 
                         {{#collection}}
                         <dt>Collection</dt>
-                        <dd>{{collection}}</dd>
+                        <dd>
+                            <a href="institution/{{collectionId}}">
+                                {{collection}}
+                            </a>
+                        </dd>
                         {{/collection}}
-                    {{/museum}}
+                    {{/hasInstitution}}
 
                     {{#country}}
                     <dt>Country</dt>
@@ -109,7 +121,7 @@
                     {{/genre}}
 
                     {{#depicts}}
-                    <dt>People on this painting</dt>
+                    <dt>On this painting</dt>
                     <dd>{{depicts}}</dd>
                     {{/depicts}}
 

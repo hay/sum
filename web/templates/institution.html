@@ -1,7 +1,8 @@
 {{> header}}
 
 <div class="header-image">
-    <div class="header-image-background" style="background-image:url({{workThumb}})"></div>
+    <div class="header-image-background"
+         style="background-image:url({{workThumb}})"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -11,12 +12,7 @@
 
             <div class="col-md-9">
                 <div class="header-image-text">
-                    <h1>{{title}}</h1>
-                    <h3 class="text-muted">
-                        {{placeOfBirth}}, {{dateOfBirth}}
-                        -
-                        {{placeOfDeath}}, {{dateOfDeath}}
-                    </h3>
+                    <h1>{{label}}</h1>
 
                     <p class="lead">{{description}}</p>
                 </div>
@@ -44,7 +40,7 @@
 <div class="bg-light bg-spaced media-grid">
     <div class="container">
         <div class="row">
-            <h2 class="text-center">Works by {{title}}</h2>
+            <h2 class="text-center">Works in {{label}}</h2>
 
             {{#works}}
             <a class="col-md-3" href="work/{{id}}">
