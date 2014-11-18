@@ -10,6 +10,7 @@ class Item extends Page {
     private $item;
 
     public $claims, $label, $id, $description, $image, $thumb, $creator, $year;
+    public $location, $territory;
 
     // TODO: this valId nonsense should be refactored
     public $longdescription, $creatorId = false, $institutionId = false;
@@ -46,12 +47,13 @@ class Item extends Page {
         $this->parseImage();
         $this->parseDate();
         $this->parseLongDescription();
-        $this->creator = $this->getClaimLabel(Properties::CREATOR);
 
         $this->creatorId = $this->getClaimId(Properties::CREATOR);
         $this->locatedInId = $this->getClaimId(Properties::LOCATEDIN);
         $this->collectionId = $this->getClaimId(Properties::COLLECTION);
 
+        $this->location = $this->getClaimId(Properties::LOCATION);
+        $this->creator = $this->getClaimLabel(Properties::CREATOR);
         $this->country = $this->getClaimLabel(Properties::COUNTRY);
         $this->instanceOf = $this->getClaimLabel(Properties::INSTANCE_OF);
         $this->movement = $this->getClaimLabel(Properties::MOVEMENT);
@@ -62,8 +64,10 @@ class Item extends Page {
         $this->inventoryNr = $this->getClaimLabel(Properties::INVENTORYNR);
         $this->locatedIn = $this->getClaimLabel(Properties::LOCATEDIN);
         $this->iconclass = $this->getClaimLabel(Properties::ICONCLASS);
+        $this->territory = $this->getClaimLabel(Properties::TERRITORY);
     }
 
+    // This really should be called 'getClaimValue'
     protected function getClaimId($pid) {
         $claim = $this->getClaim($pid);
 

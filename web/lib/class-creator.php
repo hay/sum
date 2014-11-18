@@ -18,7 +18,13 @@ class Creator extends Item {
     }
 
     private function getWorks(){
-        $works = $this->getQuery(Properties::CREATOR, $this->id);
+        $query = sprintf("CLAIM[%s:%s] AND CLAIM[%s]",
+            substr(Properties::CREATOR, 1),
+            $this->id,
+            substr(Properties::IMAGE, 1)
+        );
+
+        $works = $this->getQuery($query);
 
         if (empty($works)) {
             return [];

@@ -18,4 +18,6 @@ class Properties {
     const DATEOFBIRTH = "P569";
     const DATEOFDEATH = "P570";
     const OCCUPATION = "P106";
+    const LOCATION = "P625";
+    const TERRITORY = "P131";
 }

@@ -48,4 +48,5 @@ $(".btn-zoom").on('click', function() {
 $("[data-action='readCompleteLead']").on('click', function(e) {
     e.preventDefault();
     $(".lead-abstract").removeClass('lead-abstract');
+    $(this).remove();
 });

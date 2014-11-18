@@ -15,7 +15,13 @@ class Institution extends Item {
     }
 
     private function getWorks(){
-        $works = $this->getQuery(Properties::COLLECTION, $this->id);
+        $query = sprintf("CLAIM[%s:%s] OR CLAIM[%s:%s] AND CLAIM[%s]",
+            substr(Properties::COLLECTION, 1), $this->id,
+            substr(Properties::LOCATEDIN, 1), $this->id,
+            substr(Properties::IMAGE, 1)
+        );
+
+        $works = $this->getQuery($query);
 
         if (empty($works)) {
             return [];

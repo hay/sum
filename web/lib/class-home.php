@@ -8,7 +8,12 @@ class Home extends Item {
     const PAINTER = 1028181;
 
     function __construct() {
-        $this->works = $this->getQuery(Properties::INSTANCE_OF, self::PAINTING, 50);
-        $this->creators = $this->getQuery(Properties::OCCUPATION, self::PAINTER, 50);
+        $pInstanceof = substr(Properties::INSTANCE_OF, 1);
+        $pOccupation = substr(Properties::OCCUPATION, 1);
+        $workQuery = sprintf("CLAIM[%s:%s]", $pInstanceof, self::PAINTING);
+        $creatorsQuery = sprintf("CLAIM[%s:%s]", $pOccupation, self::PAINTER);
+
+        $this->works = $this->getQuery($workQuery, 50);
+        $this->creators = $this->getQuery($creatorsQuery, 50);
     }
 }

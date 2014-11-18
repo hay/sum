@@ -30,7 +30,16 @@
             </div>
 
             <div class="col-md-4">
+                <p><strong>
+                    {{#territory}}
+                        Located in {{territory}}
+                        {{#country}}
+                            ({{country}})
+                        {{/country}}
+                    {{/territory}}
+                </strong></p>
 
+                <img src="//maps.googleapis.com/maps/api/staticmap?center={{location.latitude}},{{location.longitude}}&zoom=14&size=300x300&markers=color:blue|label={{label}}|{{location.latitude}},{{location.longitude}}" width="100%">
             </div>
         </div>
     </div>

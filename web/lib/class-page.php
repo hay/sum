@@ -12,20 +12,19 @@ class Page {
         $this->title = "The Sum of All Paintings";
         $this->fullurl = $this->root;
         $this->thumb = self::DEFAULT_THUMB;
-         // We should probably make this an url parameter or something
+
+        // We should probably make this an url parameter or something
         $this->lang = DEFAULT_LANGUAGE;
     }
 
-    protected function getQuery($has, $item = false, $size = 4) {
-        $has = substr($has, 1);
+    protected function getQuery($query, $size = 4) {
+        $url = sprintf(self::WIKIDATA_QUERY_ENDPOINT,
+            API_ENDPOINT,
+            urlencode($query),
+            $this->lang,
+            $size
+        );
 
-        if ($item) {
-            $claim = sprintf("CLAIM[%s:%s]", $has, $item);
-        } else {
-            $claim = sprintf("CLAIM[%s]", $has);
-        }
-
-        $url = sprintf(self::WIKIDATA_QUERY_ENDPOINT, API_ENDPOINT, $claim, $this->lang, $size);
         $req = Request::get($url)->send();
 
         return $req->body->response ? $req->body->response : [];
