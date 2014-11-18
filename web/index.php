@@ -12,6 +12,7 @@
     require 'lib/class-item.php';
     require 'lib/class-work.php';
     require 'lib/class-creator.php';
+    require 'lib/class-home.php';
 
     $templatePath = ABSPATH . "/templates";
 
@@ -30,10 +31,6 @@
 
     $app = new \Slim\Slim();
 
-    $app->get("/", function() use ($renderer) {
-        echo $renderer->render("home", new Page());
-    });
-
     function renderPage($id, $page) {
         global $app, $renderer;
 
@@ -45,7 +42,7 @@
 
         try {
             if ($page == "work") {
-                $item = new Work($id);
+                $item = new Work($id, 3000);
             }
 
             if ($page == "creator") {
@@ -64,6 +61,10 @@
 
         echo $renderer->render($page, $item);
     }
+
+    $app->get("/", function() use ($renderer) {
+        echo $renderer->render("home", new Home());
+    });
 
     $app->get("/creator/:id", function($id) {
         renderPage($id, "creator");

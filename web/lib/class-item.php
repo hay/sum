@@ -2,8 +2,10 @@
 use \Httpful\Request;
 
 class Item extends Page {
-    const WIKIDATA_ENDPOINT = "%s/wikidata/entity?q=%s&resolveimages=1&imagewidth=2000&imageheight=2000&lang=%s";
+    const WIKIDATA_ENDPOINT = "%s/wikidata/entity?q=%s&resolveimages=1&imagewidth=%s&imageheight=%s&lang=%s";
     const WIKIPEDIA_ENDPOINT = "%s/wikipedia/define?q=%s&lang=%s";
+
+    const DEFAULT_THUMB_SIZE = 300;
 
     private $item;
 
@@ -11,9 +13,18 @@ class Item extends Page {
     public $longdescription, $creatorId = false;
     public $error = false;
 
-    function __construct($qid) {
+    function __construct($qid, $thumbSize = self::DEFAULT_THUMB_SIZE) {
         parent::__construct();
-        $wikidataEndpoint = sprintf(self::WIKIDATA_ENDPOINT, API_ENDPOINT, $qid, $this->lang);
+
+        $wikidataEndpoint = sprintf(
+            self::WIKIDATA_ENDPOINT,
+            API_ENDPOINT,
+            $qid,
+            $thumbSize,
+            $thumbSize,
+            $this->lang
+        );
+
         $url = sprintf($wikidataEndpoint, $qid);
         $res = Request::get($url)->send();
 

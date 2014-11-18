@@ -44,3 +44,8 @@ $(".btn-zoom").on('click', function() {
         $(this).addClass('btn-zoom-zoomed');
     }
 });
+
+$("[data-action='readCompleteLead']").on('click', function(e) {
+    e.preventDefault();
+    $(".lead-abstract").removeClass('lead-abstract');
+});

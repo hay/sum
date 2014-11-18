@@ -12,9 +12,29 @@
             <h2>Examples</h2>
 
             <ul class="list-unstyled">
-                <li><a href="{{root}}work/219831">The Night Watch</a></li>
-                <li><a href="{{root}}work/1170315">Black Square</a></li>
-                <li><a href="{{root}}work/157541">Sunflowers</a></li>
+                <li><a href="//sum.bykr.org/work/219831">The Night Watch</a></li>
+                <li><a href="//sum.bykr.org/work/1170315">Black Square</a></li>
+                <li><a href="//sum.bykr.org/work/157541">Sunflowers</a></li>
+            </ul>
+        </div>
+
+        <div class="col-md-4 col-md-offset-2">
+            <h2>Works</h2>
+
+            <ul class="list-unstyled">
+                {{#works}}
+                <li><a href="work/{{.}}">{{.}}</a></li>
+                {{/works}}
+            </ul>
+        </div>
+
+        <div class="col-md-4">
+            <h2>Creators</h2>
+
+            <ul class="list-unstyled">
+                {{#creators}}
+                <li><a href="creator/{{.}}">{{.}}</a></li>
+                {{/creators}}
             </ul>
         </div>
     </div>

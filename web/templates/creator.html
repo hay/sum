@@ -1,11 +1,12 @@
 {{> header}}
 
-<div class="header-image" style="background-image:url({{image}})">
+<div class="header-image">
+    <div class="header-image-background" style="background-image:url({{workThumb}})"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <div class="header-image-avatar"
-                     style="background-image:url({{avatar}})"></div>
+                     style="background-image:url({{thumb}})"></div>
             </div>
 
             <div class="col-md-9">
@@ -16,6 +17,7 @@
                         -
                         {{placeOfDeath}}, {{dateOfDeath}}
                     </h3>
+
                     <p class="lead">{{description}}</p>
                 </div>
             </div>
@@ -27,31 +29,38 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <p class="lead">{{longdescription}}</p>
+                <p class="lead lead-abstract">{{longdescription}}</p>
+
+
+                <a href="" data-action="readCompleteLead">Read more... &raquo;</a>
             </div>
 
             <div class="col-md-4">
-                ...
+
             </div>
         </div>
     </div>
 </div>
 
-<!--
-<div class="bg-light bg-spaced">
+{{#hasWorks}}
+<div class="bg-light bg-spaced media-grid">
     <div class="container">
         <div class="row">
             <h2 class="text-center">Works by {{title}}</h2>
 
             {{#works}}
-            <div class="col-md-3">
-                <img src="{{.image}}">
-                {{.title}}
-            </div>
+            <a class="col-md-3" href="work/{{id}}">
+                <span class="media-grid-thumb" style="background-image:url({{thumb}})"></span>
+
+                <h3>
+                    {{#label}} {{label}} {{/label}}
+                    {{#year}} ({{year}}) {{/year}}
+                </h3>
+            </a>
             {{/works}}
         </div>
     </div>
 </div>
--->
+{{/hasWorks}}
 
 {{> footer}}
