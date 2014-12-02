@@ -15,3 +15,9 @@ Then, in the root of the project, install the dependencies
 You should be able to run the application in `web/` now.
 
 Note that you either need `mod_rewrite` (for Apache) or some other redirection magic to get pretty urls.
+
+## Credits
+* Written by [Hay Kranen](http://github.com/hay)
+
+With contributions by:
+* [Tisza Gergö](https://github.com/tgr)
