@@ -2,19 +2,23 @@
 
 <div class="header-image">
     <div class="header-image-background"
-         style="background-image:url('{{firstimage.thumb}}')"></div>
+         style="background-image:url('{{article.firstimage.thumb}}')"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <div class="header-image-avatar"
-                     style="background-image:url('{{thumbnail.url}}')"></div>
+                     style="background-image:url('{{article.thumbnail.url}}')"></div>
             </div>
 
             <div class="col-md-9">
                 <div class="header-image-text">
-                    <h1>{{label}}</h1>
+                    {{#item.labels}}
+                    <h1>{{.}}</h1>
+                    {{/item.labels}}
 
-                    <p class="lead">{{description}}</p>
+                    {{#item.descriptions}}
+                    <p class="lead">{{.}}</p>
+                    {{/item.descriptions}}
                 </div>
             </div>
         </div>
@@ -25,13 +29,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                {{{text}}}
+                {{{article.text}}}
             </div>
 
             <div class="col-md-4">
-                {{#images}}
+                {{#article.images}}
                     <img src="{{thumb}}" class="img-thumbnail buffer-bottom-1">
-                {{/images}}
+                {{/article.images}}
             </div>
         </div>
     </div>

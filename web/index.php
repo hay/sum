@@ -14,7 +14,6 @@
     require 'lib/class-creator.php';
     require 'lib/class-institution.php';
     require 'lib/class-home.php';
-    require 'lib/class-article.php';
 
     $templatePath = ABSPATH . "/templates";
 
@@ -33,7 +32,7 @@
 
     $app = new \Slim\Slim();
 
-    function renderPage($id) {
+    function renderPage($id, $format = "html") {
         global $app, $renderer;
 
         // Check for Q items
@@ -41,7 +40,6 @@
             // FIXME: why do we need PATH here?
             $app->redirect(PATH . "/" . substr($id, 1));
         }
-
 
         try {
             $item = new Item($id);
@@ -56,7 +54,11 @@
             }
         }
 
-        echo $renderer->render($item->getPageType(), $item);
+        if ($format == "json") {
+            echo json_encode($item);
+        } else {
+            echo $renderer->render($item->getPageType(), $item);
+        }
     }
 
     // Homepage
@@ -67,6 +69,11 @@
     // Redirect old urls
     $app->get("/:type/:id", function($type, $id) use ($app) {
         $app->redirect(PATH . "/$id");
+    });
+
+    $app->get("/:id.json", function($id) use ($app) {
+        $app->response->headers->set('Content-Type', 'application/json');
+        renderPage($id, "json");
     });
 
     // Conventional URLS
