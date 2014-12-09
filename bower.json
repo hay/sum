@@ -1,9 +1,10 @@
 {
-    "name" : "sum",
-    "private" : true,
-    "dependencies" : {
-        "bootstrap" : "3.3.*",
-        "fastclick" : "1.*",
-        "jquery" : "2.1.*"
-    }
+  "name": "sum",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3.3.*",
+    "fastclick": "1.*",
+    "jquery": "2.1.*",
+    "valenski": "*"
+  }
 }

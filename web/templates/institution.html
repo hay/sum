@@ -24,9 +24,12 @@
 <div class="bg-dark bg-spaced">
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 buffer-bottom-2">
                 <p class="lead lead-abstract">{{longdescription}}</p>
-                <a href="" data-action="readCompleteLead">Read more... &raquo;</a>
+                <a href="" class="btn btn-link" data-action="readCompleteLead">
+                    <span class="glyphicon glyphicon-align-left"></span>
+                    Read more
+                </a>
             </div>
 
             <div class="col-md-4">
@@ -49,18 +52,20 @@
 <div class="bg-light bg-spaced media-grid">
     <div class="container">
         <div class="row">
-            <h2 class="text-center">Works in {{label}}</h2>
+            <div class="col-md-12">
+                <h2 class="text-center">Works in {{label}}</h2>
 
-            {{#works}}
-            <a class="col-md-3" href="work/{{id}}">
-                <span class="media-grid-thumb" style="background-image:url({{thumb}})"></span>
+                {{#works}}
+                <a class="col-md-3" href="work/{{id}}">
+                    <span class="media-grid-thumb" style="background-image:url({{thumb}})"></span>
 
-                <h3>
-                    {{#label}} {{label}} {{/label}}
-                    {{#year}} ({{year}}) {{/year}}
-                </h3>
-            </a>
-            {{/works}}
+                    <h3>
+                        {{#label}} {{label}} {{/label}}
+                        {{#year}} ({{year}}) {{/year}}
+                    </h3>
+                </a>
+                {{/works}}
+            </div>
         </div>
     </div>
 </div>

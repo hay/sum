@@ -80,6 +80,10 @@ a:hover {
     overflow: hidden;
 }
 
+.btn {
+    white-space: normal;
+}
+
 .media-grid {
 
 }
@@ -99,14 +103,12 @@ a:hover {
 }
 
 .item-image {
-    img {
-        display: block;
-        opacity: 0;
-        @include transition(1s);
-    }
+    @include bg-cover;
+    opacity: 0;
+    @include transition(1s);
 
-    img.item-image-loaded {
-        opacity : 1;
+    &.item-image-loaded {
+        opacity: 1;
     }
 }
 
@@ -132,30 +134,5 @@ a:hover {
 
     dt, dd {
         padding-bottom: 5px;
-    }
-}
-
-.btn-zoom {
-    background: rgba(255, 255, 255, 0.8);
-    position: absolute;
-    right: 10px;
-    top: 10px;
-
-    .glyphicon-zoom-in {
-        display: inline-block;
-    }
-
-    .glyphicon-zoom-out {
-        display: none;
-    }
-
-    &.btn-zoom-zoomed {
-        .glyphicon-zoom-in {
-            display: none;
-        }
-
-        .glyphicon-zoom-out {
-            display: inline-block;
-        }
     }
 }

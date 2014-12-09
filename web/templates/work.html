@@ -1,14 +1,9 @@
 {{> header}}
 
 {{#thumb}}
-    <div class="full-screen item-image-container">
-        <div class="item-image" data-src="{{thumb}}"></div>
-
-        <button class="btn btn-default btn-lg btn-zoom">
-            <span class="glyphicon glyphicon-zoom-in"></span>
-            <span class="glyphicon glyphicon-zoom-out"></span>
-        </button>
-     </div>
+<div class="full-screen item-image-container">
+    <div class="item-image full-screen" data-src="{{thumb}}"></div>
+</div>
 {{/thumb}}
 
 {{^image}}
@@ -17,9 +12,9 @@
 </div>
 {{/image}}
 
-<div class="bg-dark ">
+<div class="bg-dark">
     <div class="container">
-        <div class="row">
+        <div class="row buffer-1">
             <div class="col-md-9">
                 <h1>{{title}}</h1>
 
@@ -28,8 +23,7 @@
                 <p class="lead">{{description}}</p>
             </div>
 
-            <div class="col-md-3">
-                <br><br>
+            <div class="col-md-3 buffer-4">
                 <a href="{{image}}?download" class="btn btn-primary btn-lg">
                     <span class="glyphicon glyphicon-download"></span>
                     Download
@@ -64,7 +58,7 @@
                 {{#creator}}
                 <a href="creator/{{creatorId}}" class="btn btn-primary btn-lg">
                     <span class="glyphicon glyphicon-eye-open"></span>
-                     See more works by <strong>{{creator}}</strong>
+                     More works by <strong>{{creator}}</strong>
                 </a>
                 {{/creator}}
 
