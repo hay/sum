@@ -33,31 +33,18 @@
 
     $app = new \Slim\Slim();
 
-    function renderPage($id, $page) {
+    function renderPage($id) {
         global $app, $renderer;
 
         // Check for Q items
         if (strtolower($id[0]) == "q") {
             // FIXME: why do we need PATH here?
-            $app->redirect(PATH . "/$page/" . substr($id, 1));
+            $app->redirect(PATH . "/" . substr($id, 1));
         }
 
+
         try {
-            if ($page == "work") {
-                $item = new Work($id, 3000);
-            }
-
-            if ($page == "creator") {
-                $item = new Creator($id);
-            }
-
-            if ($page == "institution") {
-                $item = new Institution($id);
-            }
-
-            if ($page == "article") {
-                $item = new Article($id);
-            }
+            $item = new Item($id);
         } catch (Exception $e) {
             echo $renderer->render("404", new Page());
             error_log($e->getMessage());
@@ -69,27 +56,22 @@
             }
         }
 
-        echo $renderer->render($page, $item);
+        echo $renderer->render($item->getPageType(), $item);
     }
 
+    // Homepage
     $app->get("/", function() use ($renderer) {
         echo $renderer->render("home", new Home());
     });
 
-    $app->get("/creator/:id", function($id) {
-        renderPage($id, "creator");
+    // Redirect old urls
+    $app->get("/:type/:id", function($type, $id) use ($app) {
+        $app->redirect(PATH . "/$id");
     });
 
-    $app->get("/institution/:id", function($id) {
-        renderPage($id, "institution");
-    });
-
-    $app->get("/work/:id", function($id) {
-        renderPage($id, "work");
-    });
-
-    $app->get("/article/:id", function($id) {
-        renderPage($id, "article");
+    // Conventional URLS
+    $app->get("/:id", function($id) {
+        renderPage($id);
     });
 
     $app->run();

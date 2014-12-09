@@ -1,4 +1,5 @@
 $bootstrap-blue: #337ab7;
+$font-headers: 'Palatino', 'Times New Roman', serif;
 
 @mixin bg-cover {
     background-repeat: no-repeat;
@@ -21,12 +22,26 @@ html, body, .full-screen {
     height: 100%;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-headers;
+}
+
 a:hover {
     text-decoration: none;
 }
 
+.navbar-inverse {
+    background-color: $bootstrap-blue;
+    border-color: $bootstrap-blue;
+
+    .navbar-brand {
+        color: white;
+        font-family: $font-headers;
+    }
+}
+
 .header-logotype {
-    font-family: 'Palatino', 'Times New Roman', serif;
+    font-family: $font-headers;
     color: $bootstrap-blue;
     letter-spacing: 1px;
     border-bottom: 3px double $bootstrap-blue;

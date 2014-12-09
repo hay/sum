@@ -12,7 +12,7 @@ class Item extends Page {
     public $claims, $label, $id, $description, $image, $thumb, $creator, $year;
     public $location, $territory;
 
-    // TODO: this valId nonsense should be refactored
+    // TODO: this $valId nonsense should be refactored
     public $longdescription, $creatorId = false, $institutionId = false;
     public $collectionId = false, $locatedInId = false;
     public $error = false;
