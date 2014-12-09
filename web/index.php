@@ -14,6 +14,7 @@
     require 'lib/class-creator.php';
     require 'lib/class-institution.php';
     require 'lib/class-home.php';
+    require 'lib/class-article.php';
 
     $templatePath = ABSPATH . "/templates";
 
@@ -53,6 +54,10 @@
             if ($page == "institution") {
                 $item = new Institution($id);
             }
+
+            if ($page == "article") {
+                $item = new Article($id);
+            }
         } catch (Exception $e) {
             echo $renderer->render("404", new Page());
             error_log($e->getMessage());
@@ -81,6 +86,10 @@
 
     $app->get("/work/:id", function($id) {
         renderPage($id, "work");
+    });
+
+    $app->get("/article/:id", function($id) {
+        renderPage($id, "article");
     });
 
     $app->run();

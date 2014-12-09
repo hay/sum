@@ -1,0 +1,40 @@
+{{> header}}
+
+<div class="header-image">
+    <div class="header-image-background"
+         style="background-image:url({{firstimage.thumb}})"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="header-image-avatar"
+                     style="background-image:url({{thumbnail.url}})"></div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="header-image-text">
+                    <h1>{{label}}</h1>
+
+                    <p class="lead">{{description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-light bg-spaced">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {{{text}}}
+            </div>
+
+            <div class="col-md-4">
+                {{#images}}
+                    <img src="{{thumb}}" class="img-thumbnail buffer-bottom-1">
+                {{/images}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{{> footer}}
