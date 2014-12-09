@@ -29,11 +29,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
+                {{#longdescription}}
                 <p class="lead lead-abstract">{{longdescription}}</p>
-                <a href="" class="btn btn-link" data-action="readCompleteLead">
-                    <span class="glyphicon glyphicon-align-left"></span>
-                    Read more
+
+                <a href="article/{{id}}" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-book"></span>
+                    Read the full Wikipedia article
                 </a>
+                {{/longdescription}}
             </div>
 
             <div class="col-md-4">

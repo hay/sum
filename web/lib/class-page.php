@@ -41,6 +41,6 @@ class Page {
 
         $req = Request::get($url)->send();
 
-        return $req->body->response ? $req->body->response : [];
+        return isset($req->body->response) ? $req->body->response : [];
     }
 }
