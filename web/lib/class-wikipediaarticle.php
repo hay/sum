@@ -4,7 +4,7 @@ use \Httpful\Request;
 class WikipediaArticle {
     const WIKIPEDIA_ENDPOINT = "%s/wikipedia/article?q=%s&lang=%s";
 
-    private $article, $item, $lang;
+    private $article, $title, $lang;
 
     function __construct($title, $lang) {
         $this->title = $title;

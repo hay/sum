@@ -20,4 +20,20 @@ class Properties {
     const OCCUPATION = "P106";
     const LOCATION = "P625";
     const TERRITORY = "P131";
+    const COMMONS_INSTITUTION_PAGE = "P1612";
+
+    public static $work = [
+        "location" => self::LOCATION,
+        "creator" => self::CREATOR,
+        "country" => self::COUNTRY,
+        "instanceOf" => self::INSTANCE_OF,
+        "movement" => self::MOVEMENT,
+        "genre" => self::GENRE,
+        "depicts" => self::DEPICTS,
+        "materialsUsed" => self::MATERIALSUSED,
+        "collection" => self::COLLECTION,
+        "inventoryNr" => self::INVENTORYNR,
+        "locatedin" => self::LOCATEDIN,
+        "iconclass" => self::ICONCLASS
+    ];
 }

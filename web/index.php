@@ -8,6 +8,7 @@
     require 'config.php';
     require 'vendor/autoload.php';
     require 'lib/class-properties.php';
+    require 'lib/class-items.php';
     require 'lib/class-page.php';
     require 'lib/class-wikidataitem.php';
     require 'lib/class-wikipediaarticle.php';

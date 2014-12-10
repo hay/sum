@@ -1,22 +1,22 @@
 {{> header}}
 
-{{#thumb}}
+{{#item.image}}
 <div class="full-screen item-image-container">
-    <div class="item-image full-screen" data-src="{{thumb}}"></div>
+    <div class="item-image full-screen" data-src="{{full}}"></div>
 </div>
-{{/thumb}}
+{{/item.image}}
 
-{{^image}}
+{{^item.image}}
 <div class="container">
     <h1>No image available.</h1>
 </div>
-{{/image}}
+{{/item.image}}
 
 <div class="bg-dark">
     <div class="container">
         <div class="row buffer-1">
             <div class="col-md-9">
-                <h1>{{title}}</h1>
+                <h1>{{item.labels}}</h1>
 
                 <p class="text-muted">{{method}}</p>
 
@@ -41,103 +41,84 @@
 <div class="bg-light bg-spaced">
     <div class="container">
         <div class="row">
-            {{#longdescription}}
+            {{#article}}
             <div class="col-md-6">
-                <p class="lead">{{longdescription}}</p>
-
-                <a href="article/{{id}}" class="btn btn-primary">
-                    <span class="glyphicon glyphicon-book"></span>
-                    Read the full Wikipedia article
-                </a>
+                {{{article.text}}}
             </div>
-            {{/longdescription}}
+            {{/article}}
 
-            {{#longdescription}}
+            {{#article}}
             <div class="col-md-6">
-            {{/longdescription}}
+            {{/article}}
 
-            {{^longdescription}}
+            {{^article}}
             <div class="col-md-12">
-            {{/longdescription}}
+            {{/article}}
 
-                {{#creator}}
-                <a href="creator/{{creatorId}}" class="btn btn-primary btn-lg">
+                {{#item.creator}}
+                <a href="{{id}}" class="btn btn-primary btn-lg">
                     <span class="glyphicon glyphicon-eye-open"></span>
-                     More works by <strong>{{creator}}</strong>
+                     More works by <strong>{{label}}</strong>
                 </a>
-                {{/creator}}
+                {{/item.creator}}
 
                 <br><br>
 
                 <div class="dl-horizontal">
-                    {{#hasInstitution}}
-                    <dt>Institution</dt>
-                    <dd>
-                        <a href="institution/{{collectionId}}">
-                            {{institution}}
-                        </a>
-                    </dd>
-                    {{/hasInstitution}}
+                    {{#item.collection}}
+                    <dt>Collection</dt>
+                    <dd><a href="{{id}}">{{label}}</a></dd>
+                    {{/item.collection}}
 
-                    {{^hasInstitution}}
-                        {{#locatedIn}}
-                        <dt>Located in</dt>
-                        <dd>
-                            <a href="institution/{{locatedInId}}">
-                                {{locatedIn}}
-                            </a>
-                        </dd>
-                        {{/locatedIn}}
+                    {{#item.locatedin}}
+                    <dt>Located in</dt>
+                    <dd><a href="{{id}}">{{label}}</a></dd>
+                    {{/item.locatedin}}
 
-                        {{#collection}}
-                        <dt>Collection</dt>
-                        <dd>
-                            <a href="institution/{{collectionId}}">
-                                {{collection}}
-                            </a>
-                        </dd>
-                        {{/collection}}
-                    {{/hasInstitution}}
-
-                    {{#country}}
+                    {{#item.country}}
                     <dt>Country</dt>
-                    <dd>{{country}}</dd>
-                    {{/country}}
+                    <dd><a href="{{id}}">{{label}}</a></dd>
+                    {{/item.country}}
 
-                    {{#instanceOf}}
+                    {{#item.instanceOf}}
                     <dt>Type of item</dt>
-                    <dd>{{instanceOf}}</dd>
-                    {{/instanceOf}}
+                    <dd><a href="{{id}}">{{label}}</a></dd>
+                    {{/item.instanceOf}}
 
-                    {{#movement}}
+                    {{#item.movement}}
                     <dt>Movement</dt>
-                    <dd>{{movement}}</dd>
-                    {{/movement}}
+                    <dd><a href="{{id}}">{{label}}</a></dd>
+                    {{/item.movement}}
 
-                    {{#genre}}
+                    {{#item.genre}}
                     <dt>Genre</dt>
-                    <dd>{{genre}}</dd>
-                    {{/genre}}
+                    <dd><a href="{{id}}">{{label}}</a></dd>
+                    {{/item.genre}}
 
-                    {{#depicts}}
+                    {{#item.depicts}}
                     <dt>On this painting</dt>
-                    <dd>{{depicts}}</dd>
-                    {{/depicts}}
+                    <dd><a href="{{id}}">{{label}}</a></dd>
+                    {{/item.depicts}}
 
-                    {{#materialsUsed}}
+                    {{#item.materialsUsed}}
                     <dt>Materials used</dt>
-                    <dd>{{materialsUsed}}</dd>
-                    {{/materialsUsed}}
+                    <dd><a href="{{id}}">{{label}}</a></dd>
+                    {{/item.materialsUsed}}
 
-                    {{#inventoryNr}}
+                    {{#item.inventoryNr}}
                     <dt>Inventory number</dt>
                     <dd>{{inventoryNr}}</dd>
-                    {{/inventoryNr}}
+                    {{/item.inventoryNr}}
 
-                    {{#iconclass}}
+                    {{#item.iconclass}}
                     <dt>Iconclass code</dt>
-                    <dd>{{iconclass}}</dd>
-                    {{/iconclass}}
+                    <dd>{{.}}</dd>
+                    {{/item.iconclass}}
+
+                    {{#item.inventoryNr}}
+                    <dt>Inventory number</dt>
+                    <dd>{{.}}</dd>
+                    {{/item.inventoryNr}}
                 </div>
             </div>
         </div>

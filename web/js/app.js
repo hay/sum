@@ -6,7 +6,7 @@
         var img = new Image();
 
         img.onload = function() {
-            $itemImage.css('background-image', 'url(' + src + ')');
+            $itemImage.attr('style', "background-image:url('" + src + "')");
             $itemImage.addClass('item-image-loaded');
         };
 
