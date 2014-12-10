@@ -27,6 +27,7 @@ class Item extends Page  {
     private function lookupPageType() {
         if ($this->wditem->hasClaimWhere(Items::$work)) {
             $this->wditem->addValues(Properties::$work);
+
             return "work";
         }
 
@@ -46,6 +47,17 @@ class Item extends Page  {
         }
 
         if ($this->wditem->getClaim(Properties::COMMONS_INSTITUTION_PAGE)) {
+            $this->wditem->addValues(Properties::$institution);
+
+            $query = new WikidataQuery(sprintf(
+                "CLAIM[%s:%s] OR CLAIM[%s:%s] AND CLAIM[%s]",
+                substr(Properties::COLLECTION, 1), $this->qid,
+                substr(Properties::LOCATEDIN, 1), $this->qid,
+                substr(Properties::IMAGE, 1)
+            ), $this->lang);
+
+            $this->item->works = $query->getResultData();
+
             return "institution";
         }
 

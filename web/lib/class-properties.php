@@ -45,4 +45,12 @@ class Properties {
         "country" => self::COUNTRY,
         "movement" => self::MOVEMENT,
     ];
+
+    public static $institution = [
+        "location" => self::LOCATION,
+        "country" => self::COUNTRY,
+        "locatedin" => self::LOCATEDIN,
+        "date" => self::DATE
+    ];
+
 }

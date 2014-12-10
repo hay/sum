@@ -1,77 +1,63 @@
 {{> header}}
 
 <div class="header-image">
-    <div class="header-image-background"
-         style="background-image:url({{workThumb}})"></div>
-    <div class="container">
+    <div class="header-image-background" style="background-image:url('{{item.works.0.image.thumb}}')"></div>    <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <div class="header-image-avatar"
-                     style="background-image:url({{thumb}})"></div>
+                     style="background-image:url('{{item.image.thumb}}')"></div>
             </div>
 
             <div class="col-md-9">
                 <div class="header-image-text">
-                    <h1>{{label}}</h1>
+                    <h1>{{item.labels}}</h1>
 
-                    <p class="lead">{{description}}</p>
+                    <p class="lead">{{item.descriptions}}</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="bg-dark bg-spaced">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 buffer-bottom-2">
-                {{#longdescription}}
-                <p class="lead lead-abstract">{{longdescription}}</p>
-
-                <a href="article/{{id}}" class="btn btn-primary">
-                    <span class="glyphicon glyphicon-book"></span>
-                    Read the full Wikipedia article
-                </a>
-                {{/longdescription}}
-            </div>
-
-            <div class="col-md-4">
-                <p><strong>
-                    {{#territory}}
-                        Located in {{territory}}
-                        {{#country}}
-                            ({{country}})
-                        {{/country}}
-                    {{/territory}}
-                </strong></p>
-
-                <img src="//maps.googleapis.com/maps/api/staticmap?center={{location.latitude}},{{location.longitude}}&zoom=14&size=300x300&markers=color:blue|label={{label}}|{{location.latitude}},{{location.longitude}}" width="100%">
-            </div>
-        </div>
-    </div>
-</div>
-
-{{#hasWorks}}
 <div class="bg-light bg-spaced media-grid">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="text-center">Works in {{label}}</h2>
+                <h2 class="text-center">Works in {{item.labels}}</h2>
 
-                {{#works}}
+                {{#item.works}}
                 <a class="col-md-3" href="work/{{id}}">
-                    <span class="media-grid-thumb" style="background-image:url({{thumb}})"></span>
+                    <span class="media-grid-thumb" style="background-image:url('{{image.thumb}}')"></span>
 
                     <h3>
-                        {{#label}} {{label}} {{/label}}
+                        {{#labels}} {{labels}} {{/labels}}
                         {{#year}} ({{year}}) {{/year}}
                     </h3>
                 </a>
-                {{/works}}
+                {{/item.works}}
             </div>
         </div>
     </div>
 </div>
-{{/hasWorks}}
+
+<div class="media-grid-thumb" style="background-image:url('//maps.googleapis.com/maps/api/staticmap?center={{item.location.0.latitude}},{{item.location.0.longitude}}&amp;zoom=14&amp;size=1200x300&amp;markers=color:blue|label={{item.labels}}|{{item.location.0.latitude}},{{item.location.0.longitude}}')"></div>
+
+<div class="bg-dark bg-spaced">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 buffer-bottom-2">
+               {{#article}}
+                    {{{article.text}}}
+                {{/article}}
+            </div>
+
+            <div class="col-md-4">
+                {{#article.images}}
+                    <img src="{{thumb}}" class="img-thumbnail buffer-bottom-1">
+                {{/article.images}}
+            </div>
+        </div>
+    </div>
+</div>
 
 {{> footer}}

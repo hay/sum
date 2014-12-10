@@ -24,10 +24,8 @@ class WikidataItem {
         if (!$claim) return false;
 
         $values = array_map(function($value) {
-            // print_r($value);
-
             if ($value->datatype == "globe-coordinate") {
-                return $value;
+                return $value->value;
             }
 
             if ($value->datatype == "time") {
