@@ -12,6 +12,7 @@
     require 'lib/class-page.php';
     require 'lib/class-wikidataitem.php';
     require 'lib/class-wikipediaarticle.php';
+    require 'lib/class-wikidataquery.php';
     require 'lib/class-item.php';
     require 'lib/class-work.php';
     require 'lib/class-creator.php';

@@ -31,6 +31,17 @@ class Item extends Page  {
         }
 
         if ($this->wditem->hasClaimWhere(Items::$creator)) {
+            $this->wditem->addValues(Properties::$creator);
+
+            $query = new WikidataQuery(sprintf(
+                "CLAIM[%s:%s] AND CLAIM[%s]",
+                substr(Properties::CREATOR, 1),
+                $this->qid,
+                substr(Properties::IMAGE, 1)
+            ), $this->lang);
+
+            $this->item->works = $query->getResultData();
+
             return "creator";
         }
 

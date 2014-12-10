@@ -1,25 +1,57 @@
 {{> header}}
 
 <div class="header-image">
-    <div class="header-image-background" style="background-image:url({{workThumb}})"></div>
+    <div class="header-image-background" style="background-image:url('{{item.works.0.image.thumb}}')"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <div class="header-image-avatar"
-                     style="background-image:url({{thumb}})"></div>
+                     style="background-image:url({{item.image.thumb}})"></div>
             </div>
 
             <div class="col-md-9">
                 <div class="header-image-text">
-                    <h1>{{title}}</h1>
+                    <h1>{{item.labels}}</h1>
+
                     <h3 class="text-muted">
-                        {{placeOfBirth}}, {{dateOfBirth}}
+                        {{#item.placeOfBirth}}
+                            <a href="{{id}}">{{label}}</a>
+                        {{/item.placeOfBirth}}
+
+                        {{#item.dateOfBirth}} ({{year}}) {{/item.dateOfBirth}}
+
                         -
-                        {{placeOfDeath}}, {{dateOfDeath}}
+
+                        {{#item.placeOfDeath}}
+                            <a href="{{id}}">{{label}}</a>
+                        {{/item.placeOfDeath}}
+
+                        {{#item.dateOfDeath}} ({{year}}) {{/item.dateOfDeath}}
                     </h3>
 
-                    <p class="lead">{{description}}</p>
+                    <p class="lead">{{item.descriptions}}</p>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-light bg-spaced media-grid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">Works by {{item.labels}}</h2>
+
+                {{#item.works}}
+                <a class="col-md-3" href="work/{{id}}">
+                    <span class="media-grid-thumb" style="background-image:url('{{image.thumb}}')"></span>
+
+                    <h3>
+                        {{#labels}} {{labels}} {{/labels}}
+                        {{#year}} ({{year}}) {{/year}}
+                    </h3>
+                </a>
+                {{/item.works}}
             </div>
         </div>
     </div>
@@ -29,44 +61,18 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                {{#longdescription}}
-                <p class="lead lead-abstract">{{longdescription}}</p>
-
-                <a href="article/{{id}}" class="btn btn-primary">
-                    <span class="glyphicon glyphicon-book"></span>
-                    Read the full Wikipedia article
-                </a>
-                {{/longdescription}}
+                {{#article}}
+                    {{{article.text}}}
+                {{/article}}
             </div>
 
             <div class="col-md-4">
-
+                {{#article.images}}
+                    <img src="{{thumb}}" class="img-thumbnail buffer-bottom-1">
+                {{/article.images}}
             </div>
         </div>
     </div>
 </div>
-
-{{#hasWorks}}
-<div class="bg-light bg-spaced media-grid">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="text-center">Works by {{title}}</h2>
-
-                {{#works}}
-                <a class="col-md-3" href="work/{{id}}">
-                    <span class="media-grid-thumb" style="background-image:url({{thumb}})"></span>
-
-                    <h3>
-                        {{#label}} {{label}} {{/label}}
-                        {{#year}} ({{year}}) {{/year}}
-                    </h3>
-                </a>
-                {{/works}}
-            </div>
-        </div>
-    </div>
-</div>
-{{/hasWorks}}
 
 {{> footer}}

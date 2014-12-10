@@ -36,4 +36,13 @@ class Properties {
         "locatedin" => self::LOCATEDIN,
         "iconclass" => self::ICONCLASS
     ];
+
+    public static $creator = [
+        "placeOfBirth" => self::PLACEOFBIRTH,
+        "dateOfBirth" => self::DATEOFBIRTH,
+        "placeOfDeath" => self::PLACEOFDEATH,
+        "dateOfDeath" => self::DATEOFDEATH,
+        "country" => self::COUNTRY,
+        "movement" => self::MOVEMENT,
+    ];
 }

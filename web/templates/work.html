@@ -18,13 +18,13 @@
             <div class="col-md-9">
                 <h1>{{item.labels}}</h1>
 
-                <p class="text-muted">{{method}}</p>
+                <p class="text-muted">{{item.method}}</p>
 
-                <p class="lead">{{description}}</p>
+                <p class="lead">{{item.descriptions}}</p>
             </div>
 
             <div class="col-md-3 buffer-4">
-                <a href="{{image}}?download" class="btn btn-primary btn-lg">
+                <a href="{{item.image.full}}?download" class="btn btn-primary btn-lg">
                     <span class="glyphicon glyphicon-download"></span>
                     Download
                 </a>
@@ -43,7 +43,7 @@
         <div class="row">
             {{#article}}
             <div class="col-md-6">
-                {{{article.text}}}
+                {{{text}}}
             </div>
             {{/article}}
 
