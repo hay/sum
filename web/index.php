@@ -14,10 +14,6 @@
     require 'lib/class-wikipediaarticle.php';
     require 'lib/class-wikidataquery.php';
     require 'lib/class-item.php';
-    require 'lib/class-work.php';
-    require 'lib/class-creator.php';
-    require 'lib/class-institution.php';
-    require 'lib/class-home.php';
 
     $templatePath = ABSPATH . "/templates";
 
@@ -67,7 +63,7 @@
 
     // Homepage
     $app->get("/", function() use ($renderer) {
-        echo $renderer->render("home", new Home());
+        echo $renderer->render("home", new Page());
     });
 
     // Redirect old urls
