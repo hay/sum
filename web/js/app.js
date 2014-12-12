@@ -26,6 +26,6 @@
     }
 
     loadWorkImage();
-    navbar();
+    // navbar();
     readLead();
 })();

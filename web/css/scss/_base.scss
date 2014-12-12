@@ -22,9 +22,9 @@ html, body, .full-screen {
     height: 100%;
 }
 
-body {
-    padding-top: 50px;
-}
+// body {
+//     padding-top: 50px;
+// }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: $font-headers;
@@ -37,10 +37,15 @@ a:hover {
 .navbar-inverse {
     background-color: rgba(51,122,183, 0.9);
     border-color: $bootstrap-blue;
+    margin-bottom: 0;
 
     .navbar-brand {
         color: white;
         font-family: $font-headers;
+    }
+
+    .glyphicon, .navbar-nav li > a {
+        color: white;
     }
 }
 
