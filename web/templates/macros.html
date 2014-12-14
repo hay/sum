@@ -1,0 +1,18 @@
+{% macro dlitem(label, items) %}
+    {% if items|length > 0 %}
+        <dt>{{label}}</dt>
+        <dd>
+            <ul class="list-unstyled">
+            {% for item in items %}
+                {% if item.id %}
+                    <li>
+                        <a href="{{item.id}}">{{item.label}}</a>
+                    </li>
+                {% else %}
+                    {{item}}
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </dd>
+    {% endif %}
+{% endmacro %}

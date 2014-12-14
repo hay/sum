@@ -1,16 +1,14 @@
-{{> header}}
+{% include 'header.html' %}
 
-{{#item.image}}
+{% if item.image %}
 <div class="full-screen item-image-container">
-    <div class="item-image full-screen" data-src="{{full}}"></div>
+    <div class="item-image full-screen" data-src="{{item.image.full}}"></div>
 </div>
-{{/item.image}}
-
-{{^item.image}}
+{% else %}
 <div class="container">
     <h1>No image available.</h1>
 </div>
-{{/item.image}}
+{% endif %}
 
 <div class="bg-dark">
     <div class="container">
@@ -36,88 +34,45 @@
 <div class="bg-light bg-spaced">
     <div class="container">
         <div class="row">
-            {{#article}}
+            {% if article %}
             <div class="col-md-6">
-                {{{text}}}
+                {% autoescape false %}
+                    {{article.text}}
+                {% endautoescape %}
             </div>
-            {{/article}}
 
-            {{#article}}
             <div class="col-md-6">
-            {{/article}}
-
-            {{^article}}
+            {% else %}
             <div class="col-md-12">
-            {{/article}}
+            {% endif %}
 
-                {{#item.creator}}
-                <a href="{{id}}" class="btn btn-primary btn-lg">
-                    <span class="glyphicon glyphicon-eye-open"></span>
-                     More works by <strong>{{label}}</strong>
-                </a>
-                {{/item.creator}}
+                {% if item.creator %}
+                    {% for creator in item.creator %}
+                        <a href="{{creator.id}}" class="btn btn-primary btn-lg">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                             More works by <strong>{{creator.label}}</strong>
+                        </a>
+                    {% endfor %}
+                {% endif %}
 
                 <br><br>
 
                 <div class="dl-horizontal">
-                    {{#item.collection}}
-                    <dt>Collection</dt>
-                    <dd><a href="{{id}}">{{label}}</a></dd>
-                    {{/item.collection}}
+                    {% import "macros.html" as macros %}
 
-                    {{#item.locatedin}}
-                    <dt>Located in</dt>
-                    <dd><a href="{{id}}">{{label}}</a></dd>
-                    {{/item.locatedin}}
-
-                    {{#item.country}}
-                    <dt>Country</dt>
-                    <dd><a href="{{id}}">{{label}}</a></dd>
-                    {{/item.country}}
-
-                    {{#item.instanceOf}}
-                    <dt>Type of item</dt>
-                    <dd><a href="{{id}}">{{label}}</a></dd>
-                    {{/item.instanceOf}}
-
-                    {{#item.movement}}
-                    <dt>Movement</dt>
-                    <dd><a href="{{id}}">{{label}}</a></dd>
-                    {{/item.movement}}
-
-                    {{#item.genre}}
-                    <dt>Genre</dt>
-                    <dd><a href="{{id}}">{{label}}</a></dd>
-                    {{/item.genre}}
-
-                    {{#item.depicts}}
-                    <dt>On this painting</dt>
-                    <dd><a href="{{id}}">{{label}}</a></dd>
-                    {{/item.depicts}}
-
-                    {{#item.materialsUsed}}
-                    <dt>Materials used</dt>
-                    <dd><a href="{{id}}">{{label}}</a></dd>
-                    {{/item.materialsUsed}}
-
-                    {{#item.inventoryNr}}
-                    <dt>Inventory number</dt>
-                    <dd>{{inventoryNr}}</dd>
-                    {{/item.inventoryNr}}
-
-                    {{#item.iconclass}}
-                    <dt>Iconclass code</dt>
-                    <dd>{{.}}</dd>
-                    {{/item.iconclass}}
-
-                    {{#item.inventoryNr}}
-                    <dt>Inventory number</dt>
-                    <dd>{{.}}</dd>
-                    {{/item.inventoryNr}}
+                    {{ macros.dlitem("Collection", item.collection) }}
+                    {{ macros.dlitem("Located in", item.locatedin) }}
+                    {{ macros.dlitem("Country", item.country) }}
+                    {{ macros.dlitem("Type of item", item.instanceOf) }}
+                    {{ macros.dlitem("Genre", item.genre) }}
+                    {{ macros.dlitem("On this painting", item.depicts) }}
+                    {{ macros.dlitem("Materials used", item.materialsUsed) }}
+                    {{ macros.dlitem("Inventory number", item.inventoryNr) }}
+                    {{ macros.dlitem("Iconclass code", item.iconclass) }}
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-{{> footer}}
+{% include 'footer.html' %}

@@ -1,7 +1,7 @@
-{{> header}}
+{% include 'header.html' %}
 
 <div class="header-image">
-    <div class="header-image-background" style="background-image:url('{{item.works.0.image.thumb}}')"></div>    <div class="container">
+    <div class="header-image-background" style="background-image:url('{{item.works[0].image.thumb}}')"></div>    <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <div class="header-image-avatar"
@@ -25,16 +25,16 @@
             <div class="col-md-12">
                 <h2 class="text-center">Works in {{item.labels}}</h2>
 
-                {{#item.works}}
-                <a class="col-md-3" href="work/{{id}}">
-                    <span class="media-grid-thumb" style="background-image:url('{{image.thumb}}')"></span>
+                {% for work in item.works %}
+                <a class="col-md-3" href="work/{{work.id}}">
+                    <span class="media-grid-thumb" style="background-image:url('{{work.image.thumb}}')"></span>
 
                     <h3>
-                        {{#labels}} {{labels}} {{/labels}}
-                        {{#year}} ({{year}}) {{/year}}
+                        {{work.labels}}
+                        {{work.year}}
                     </h3>
                 </a>
-                {{/item.works}}
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -45,19 +45,19 @@
 <div class="bg-dark bg-spaced">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 buffer-bottom-2">
-               {{#article}}
-                    {{{article.text}}}
-                {{/article}}
+            <div class="col-md-8">
+                {% autoescape false %}
+                    {{article.text}}
+                {% endautoescape %}
             </div>
 
             <div class="col-md-4">
-                {{#article.images}}
-                    <img src="{{thumb}}" class="img-thumbnail buffer-bottom-1">
-                {{/article.images}}
+                {% for image in article.images %}
+                    <img src="{{image.thumb}}" class="img-thumbnail buffer-bottom-1">
+                {% endfor %}
             </div>
         </div>
     </div>
 </div>
 
-{{> footer}}
+{% include 'footer.html' %}

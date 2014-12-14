@@ -15,22 +15,23 @@
     require 'lib/class-wikidataquery.php';
     require 'lib/class-item.php';
 
-    $templatePath = ABSPATH . "/templates";
-
-    $rendererOptions = [
-        "extension" => ".html"
-    ];
-
-    $renderer = new Mustache_Engine([
-        "loader" => new Mustache_Loader_FilesystemLoader(
-            $templatePath, $rendererOptions
-        ),
-        "partials_loader" => new Mustache_Loader_FilesystemLoader(
-            $templatePath, $rendererOptions
-        )
-    ]);
-
     $app = new \Slim\Slim();
+
+    function render($template, $obj) {
+        $loader = new Twig_Loader_Filesystem(ABSPATH . "/templates");
+
+        $renderer = new Twig_Environment($loader, [
+            "cache" => ABSPATH . "/cache",
+            "debug" => DEBUG
+        ]);
+
+        if (DEBUG)  {
+            $renderer->addExtension(new Twig_Extension_Debug());
+        }
+
+        $data = new ArrayObject($obj);
+        echo $renderer->render("$template.html", $data->getArrayCopy());
+    }
 
     function renderPage($id, $format = "html") {
         global $app, $renderer;
@@ -44,7 +45,7 @@
         try {
             $item = new Item($id);
         } catch (Exception $e) {
-            echo $renderer->render("404", new Page());
+            render("404", new Page());
             error_log($e->getMessage());
 
             if (DEBUG) {
@@ -57,13 +58,13 @@
         if ($format == "json") {
             echo json_encode($item);
         } else {
-            echo $renderer->render($item->getPageType(), $item);
+            render($item->getPageType(), $item);
         }
     }
 
     // Homepage
-    $app->get("/", function() use ($renderer) {
-        echo $renderer->render("home", new Page());
+    $app->get("/", function() {
+        render("home", new Page());
     });
 
     // Redirect old urls

@@ -1,4 +1,4 @@
-{{> header}}
+{% include 'header.html' %}
 
 <div class="header-image">
     <div class="header-image-background"
@@ -12,13 +12,13 @@
 
             <div class="col-md-9">
                 <div class="header-image-text">
-                    {{#item.labels}}
-                    <h1>{{.}}</h1>
-                    {{/item.labels}}
+                    {% if item.labels %}
+                    <h1>{{item.labels}}</h1>
+                    {% endif %}
 
-                    {{#item.descriptions}}
-                    <p class="lead">{{.}}</p>
-                    {{/item.descriptions}}
+                    {% if item.descriptions %}
+                    <p class="lead">{{item.descriptions}}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -29,16 +29,18 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                {{{article.text}}}
+                {% autoescape false %}
+                    {{article.text}}
+                {% endautoescape %}
             </div>
 
             <div class="col-md-4">
-                {{#article.images}}
-                    <img src="{{thumb}}" class="img-thumbnail buffer-bottom-1">
-                {{/article.images}}
+                {% for image in article.images %}
+                    <img src="{{image.thumb}}" class="img-thumbnail buffer-bottom-1">
+                {% endfor %}
             </div>
         </div>
     </div>
 </div>
 
-{{> footer}}
+{% include 'footer.html' %}

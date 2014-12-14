@@ -1,7 +1,7 @@
-{{> header}}
+{% include 'header.html' %}
 
 <div class="header-image">
-    <div class="header-image-background" style="background-image:url('{{item.works.0.image.thumb}}')"></div>
+    <div class="header-image-background" style="background-image:url('{{item.works[0].image.thumb}}')"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -14,19 +14,23 @@
                     <h1>{{item.labels}}</h1>
 
                     <h3 class="text-muted">
-                        {{#item.placeOfBirth}}
-                            <a href="{{id}}">{{label}}</a>
-                        {{/item.placeOfBirth}}
+                        {% if item.placeOfBirth %}
+                            <a href="{{item.placeOfBirth.id}}">{{item.placeOfBirth.label}}</a>
+                        {% endif %}
 
-                        {{#item.dateOfBirth}} ({{year}}) {{/item.dateOfBirth}}
+                        {% if item.dateOfBirth %}
+                            {{item.dateOfBirth.year}}
+                        {% endif %}
 
                         -
 
-                        {{#item.placeOfDeath}}
-                            <a href="{{id}}">{{label}}</a>
-                        {{/item.placeOfDeath}}
+                        {% if item.placeOfDeath %}
+                            <a href="{{item.placeOfDeath.id}}">{{item.placeOfDeath.label}}</a>
+                        {% endif %}
 
-                        {{#item.dateOfDeath}} ({{year}}) {{/item.dateOfDeath}}
+                        {% if item.dateOfDeath %}
+                            {{item.dateOfDeath.year}}
+                        {% endif %}
                     </h3>
 
                     <p class="lead">{{item.descriptions}}</p>
@@ -42,16 +46,16 @@
             <div class="col-md-12">
                 <h2 class="text-center">Works by {{item.labels}}</h2>
 
-                {{#item.works}}
-                <a class="col-md-3" href="work/{{id}}">
-                    <span class="media-grid-thumb" style="background-image:url('{{image.thumb}}')"></span>
+                {% for work in item.works %}
+                <a class="col-md-3" href="work/{{work.id}}">
+                    <span class="media-grid-thumb" style="background-image:url('{{work.image.thumb}}')"></span>
 
                     <h3>
-                        {{#labels}} {{labels}} {{/labels}}
-                        {{#year}} ({{year}}) {{/year}}
+                        {{work.labels}}
+                        {{work.year}}
                     </h3>
                 </a>
-                {{/item.works}}
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -61,18 +65,18 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                {{#article}}
-                    {{{article.text}}}
-                {{/article}}
+                {% autoescape false %}
+                    {{article.text}}
+                {% endautoescape %}
             </div>
 
             <div class="col-md-4">
-                {{#article.images}}
-                    <img src="{{thumb}}" class="img-thumbnail buffer-bottom-1">
-                {{/article.images}}
+                {% for image in article.images %}
+                    <img src="{{image.thumb}}" class="img-thumbnail buffer-bottom-1">
+                {% endfor %}
             </div>
         </div>
     </div>
 </div>
 
-{{> footer}}
+{% include 'footer.html' %}
