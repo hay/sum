@@ -12,12 +12,16 @@
     require 'lib/class-page.php';
     require 'lib/class-wikidataitem.php';
     require 'lib/class-wikipediaarticle.php';
+    require 'lib/class-wikidatasearch.php';
     require 'lib/class-wikidataquery.php';
     require 'lib/class-item.php';
+    require 'lib/class-searchresult.php';
 
     $app = new \Slim\Slim();
 
     function render($template, $obj) {
+        global $app;
+
         $loader = new Twig_Loader_Filesystem(ABSPATH . "/templates");
 
         $renderer = new Twig_Environment($loader, [
@@ -31,6 +35,7 @@
 
         $data = new ArrayObject($obj);
         echo $renderer->render("$template.html", $data->getArrayCopy());
+        $app->stop();
     }
 
     function renderPage($id, $format = "html") {
@@ -63,8 +68,13 @@
     }
 
     // Homepage
-    $app->get("/", function() {
-        render("home", new Page());
+    $app->get("/", function() use ($app) {
+        if ($app->request->get('q')) {
+            $q = $app->request->get('q');
+            render("home", new SearchResult($q));
+        } else {
+            render("home", new Page());
+        }
     });
 
     // Redirect old urls

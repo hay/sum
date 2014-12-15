@@ -8,14 +8,31 @@
             <p class="lead">
                 A project to visualize the knowledge getting added to <a href="https://www.wikidata.org/wiki/Wikidata:WikiProject_sum_of_all_paintings">Wikidata</a>.
             </p>
+        </div>
 
-            <h2>Examples</h2>
+        <div class="col-md-6 col-md-offset-4">
+            {% if searchresults %}
+                <h2>Search results</h2>
 
-            <ul class="list-unstyled">
-                <li><a href="219831">The Night Watch</a></li>
-                <li><a href="1170315">Black Square</a></li>
-                <li><a href="157541">Sunflowers</a></li>
-            </ul>
+                <ul class="list-unstyled text-left">
+                    {% for item in searchresults %}
+                    <li class="buffer-bottom-1">
+                        <a href="{{item.id}}">
+                            <strong>{{item.label}}</strong><br />
+                            {{item.description}}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h2>Examples</h2>
+
+                <ul class="list-unstyled">
+                    <li><a href="219831">The Night Watch</a></li>
+                    <li><a href="1170315">Black Square</a></li>
+                    <li><a href="157541">Sunflowers</a></li>
+                </ul>
+            {% endif %}
         </div>
     </div>
 </div>
