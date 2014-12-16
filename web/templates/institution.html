@@ -43,22 +43,6 @@
 
 <div class="media-grid-thumb" style="background-image:url('//maps.googleapis.com/maps/api/staticmap?center={{item.location.0.latitude}},{{item.location.0.longitude}}&amp;zoom=14&amp;size=1200x300&amp;markers=color:blue|label={{item.labels}}|{{item.location.0.latitude}},{{item.location.0.longitude}}')"></div>
 
-<div class="bg-dark bg-spaced">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                {% autoescape false %}
-                    {{article.text}}
-                {% endautoescape %}
-            </div>
-
-            <div class="col-md-4">
-                {% for image in article.images %}
-                    <img src="{{image.thumb}}" class="img-thumbnail buffer-bottom-1">
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</div>
+{% include 'wikipedia-article.html' %}
 
 {% include 'footer.html' %}

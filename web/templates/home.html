@@ -1,19 +1,32 @@
 {% include 'header.html' %}
 
-<div class="container">
+<div class="container container-fill">
     <div class="row">
         <div class="col-md-12 text-center">
-            <h1 class="header-logotype">The Sum of All Knowledge</h1>
+            <h1 class="header-logotype">
+                <a href="{{root}}">The Sum of All Knowledge</a>
+            </h1>
 
             <p class="lead">
                 A project to visualize the knowledge getting added to <a href="https://www.wikidata.org/wiki/Wikidata:WikiProject_sum_of_all_paintings">Wikidata</a>.
             </p>
         </div>
 
-        <div class="col-md-6 col-md-offset-4">
-            {% if searchresults %}
-                <h2>Search results</h2>
+        <div class="col-md-8 col-md-offset-2">
+            <form method="get" action="{{root}}" class="buffer-4">
+                <div class="input-group input-group-lg">
+                    <input type="text" id="q" name="q" class="form-control" placeholder="Search over 13,000,000 items..." value="{{q}}">
 
+                    <span class="input-group-btn">
+                        <button class="btn btn-default">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </form>
+
+            {% if searchresults %}
+                <p>Results for <strong>{{q}}</strong>:</p>
                 <ul class="list-unstyled text-left">
                     {% for item in searchresults %}
                     <li class="buffer-bottom-1">
@@ -25,16 +38,28 @@
                     {% endfor %}
                 </ul>
             {% else %}
-                <h2>Examples</h2>
+                {% if isSearch %}
+                    <div class="alert alert-info">
+                        No items found for "<strong>{{q}}</strong>".
+                    </div>
+                {% else %}
+                    <h2 class="buffer-top-4 text-center">Examples</h2>
 
-                <ul class="list-unstyled">
-                    <li><a href="219831">The Night Watch</a></li>
-                    <li><a href="1170315">Black Square</a></li>
-                    <li><a href="157541">Sunflowers</a></li>
-                </ul>
+                    <ul class="list-unstyled text-center">
+                        <li><a href="219831">The Night Watch</a></li>
+                        <li><a href="1170315">Black Square</a></li>
+                        <li><a href="157541">Sunflowers</a></li>
+                    </ul>
+                {% endif %}
             {% endif %}
         </div>
     </div>
 </div>
 
-{% include 'footer.html' %}
+<footer class="container buffer-top-2">
+    <ul class="list-inline text-center">
+        <li>Powered by <a href="http://www.wikimedia.org">the Wikimedia movement</a></li>
+        <li>Developed by <a href="http://www.twitter.com/hayify">Hay Kranen</a></li>
+        <li>All code of this project is available on <a href="http://github.com/hay/sum">Github</a></li>
+    </ul>
+</footer>

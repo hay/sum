@@ -1,0 +1,17 @@
+<article class="wikipedia-article bg-light bg-spaced">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% autoescape false %}
+                    {{article.text}}
+                {% endautoescape %}
+            </div>
+
+            <div class="col-md-4">
+                {% for image in article.images %}
+                    <img src="{{image.thumb}}" class="img-thumbnail buffer-bottom-1">
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</article>

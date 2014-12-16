@@ -22,16 +22,16 @@ html, body, .full-screen {
     height: 100%;
 }
 
-// body {
-//     padding-top: 50px;
-// }
-
 h1, h2, h3, h4, h5, h6 {
     font-family: $font-headers;
 }
 
 a:hover {
     text-decoration: none;
+}
+
+.container-fill {
+    height: calc(100% - 50px);
 }
 
 .navbar-inverse {
@@ -46,6 +46,10 @@ a:hover {
 
     .glyphicon, .navbar-nav li > a {
         color: white;
+    }
+
+    .btn .glyphicon {
+        color: $bootstrap-blue;
     }
 }
 
@@ -102,6 +106,12 @@ a:hover {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.wikipedia-article {
+    .mw-gallery-traditional {
+        display: none;
+    }
 }
 
 .btn {
