@@ -56,7 +56,15 @@
             }
 
             error_log($e->getMessage());
-            render("404", new Page());
+
+            if ($e->getCode() == 500) {
+                $app->response->setStatus(500);
+                render("500", new Page());
+            } else {
+                $app->response->setStatus(404);
+                render("404", new Page());
+            }
+
             $app->stop();
         }
 
