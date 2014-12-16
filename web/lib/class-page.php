@@ -7,6 +7,7 @@ class Page {
 
     function __construct() {
         $this->root = ROOT;
+        $this->version = VERSION;
         $this->title = "The Sum of All Knowledge";
         $this->fullurl = $this->root;
         $this->langcodes = json_decode(file_get_contents(ABSPATH . '/data/langcodes.json'));

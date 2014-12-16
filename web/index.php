@@ -6,6 +6,7 @@
     }
 
     require 'config.php';
+    require 'version.php';
     require 'vendor/autoload.php';
     require 'lib/class-properties.php';
     require 'lib/class-items.php';
