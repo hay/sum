@@ -11,7 +11,7 @@ class Item extends Page  {
         $this->wditem = new WikidataItem($this->qid, $this->lang);
         $this->item = $this->wditem->getItemData();
 
-        if (property_exists($this->item->sitelinks, $this->lang)) {
+        if (isset($this->item->sitelinks->{$this->lang})) {
             $title = $this->item->sitelinks->{$this->lang}->title;
             $article = new WikipediaArticle($title, $this->lang);
             $this->article = $article->getArticleData();

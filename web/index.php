@@ -50,14 +50,13 @@
         try {
             $item = new Item($id);
         } catch (Exception $e) {
-            render("404", new Page());
-            error_log($e->getMessage());
-
             if (DEBUG) {
                 throw $e;
-            } else {
-                return;
             }
+
+            error_log($e->getMessage());
+            render("404", new Page());
+            $app->stop();
         }
 
         if ($format == "json") {
