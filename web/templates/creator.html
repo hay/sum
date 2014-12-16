@@ -5,10 +5,12 @@
     <div class="header-image-background" style="background-image:url('{{item.works[0].image.thumb}}')"></div>
     <div class="container">
         <div class="row">
+            {% if item.image.thumb %}
             <div class="col-md-3">
                 <div class="header-image-avatar"
                      style="background-image:url('{{item.image.thumb}}')"></div>
             </div>
+            {% endif %}
 
             <div class="col-md-9">
                 <div class="header-image-text">
@@ -16,21 +18,25 @@
 
                     <h3 class="text-muted">
                         {% if item.placeOfBirth %}
-                            <a href="{{item.placeOfBirth.id}}">{{item.placeOfBirth.label}}</a>
+                            <a href="{{item.placeOfBirth[0].id}}">
+                                {{item.placeOfBirth[0].label}}
+                            </a>
                         {% endif %}
 
                         {% if item.dateOfBirth %}
-                            {{item.dateOfBirth.year}}
+                            {{item.dateOfBirth[0].year}}
                         {% endif %}
 
-                        -
-
                         {% if item.placeOfDeath %}
-                            <a href="{{item.placeOfDeath.id}}">{{item.placeOfDeath.label}}</a>
+                            -
+
+                            <a href="{{item.placeOfDeath[0].id}}">
+                                {{item.placeOfDeath[0].label}}
+                            </a>
                         {% endif %}
 
                         {% if item.dateOfDeath %}
-                            {{item.dateOfDeath.year}}
+                            {{item.dateOfDeath[0].year}}
                         {% endif %}
                     </h3>
 
