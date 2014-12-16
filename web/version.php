@@ -1,2 +1,2 @@
 <?php
-    define('VERSION', '0.3.0-pre');
+    define('VERSION', '0.3.0');
