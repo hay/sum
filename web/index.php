@@ -79,7 +79,7 @@
 
     // Redirect old urls
     $app->get("/:type/:id", function($type, $id) use ($app) {
-        $app->redirect(PATH . "/$id");
+        $app->redirect(PATH . "/$id", 301);
     });
 
     $app->get("/:id.json", function($id) use ($app) {
