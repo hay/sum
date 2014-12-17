@@ -5,7 +5,6 @@
     "bootstrap": "3.3.*",
     "fastclick": "1.*",
     "jquery": "2.1.*",
-    "valenski": "*",
-    "bootstrap-autohidingnavbar": "~1.0.0"
+    "valenski": "*"
   }
 }
