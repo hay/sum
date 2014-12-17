@@ -1,0 +1,14 @@
+.item-image-container {
+    background-color: black;
+    overflow: hidden;
+}
+
+.item-image {
+    @include bg-cover;
+    opacity: 0;
+    @include transition(1s);
+
+    &.item-image-loaded {
+        opacity: 1;
+    }
+}

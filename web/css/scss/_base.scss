@@ -1,14 +1,3 @@
-$bootstrap-blue: #337ab7;
-$font-headers: 'Palatino', 'Times New Roman', serif;
-
-@mixin bg-cover {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    background-color: black;
-    overflow: hidden;
-}
-
 // Some general tweaks that apply to all elements
 * {
     // No round corners and box shadow goddamned!
@@ -30,74 +19,12 @@ a:hover {
     text-decoration: none;
 }
 
-.container-fill {
+.container-fill-home {
     height: calc(100% - 50px);
 }
 
-.navbar-inverse {
-    background-color: rgba(51,122,183, 0.9);
-    border-color: $bootstrap-blue;
-    margin-bottom: 0;
-
-    .navbar-brand {
-        color: white;
-        font-family: $font-headers;
-    }
-
-    .glyphicon, .navbar-nav li > a {
-        color: white;
-    }
-
-    .btn .glyphicon {
-        color: $bootstrap-blue;
-    }
-}
-
-.header-logotype {
-    font-family: $font-headers;
-    color: $bootstrap-blue;
-    letter-spacing: 1px;
-    border-bottom: 3px double $bootstrap-blue;
-    padding-bottom: 5px;
-}
-
-.header-image-background, .header-image-avatar {
-    @include bg-cover;
-}
-
-.header-image {
-    position: relative;
-    overflow: hidden;
-}
-
-.header-image, .header-image-background {
-    height: 300px;
-    width: 100%;
-    background-color: #000;
-}
-
-.header-image-background {
-    position: absolute;
-    @include filter(blur(4px));
-    height: 350px;
-    width: 110%;
-    top: -25px;
-    left: -25px;
-}
-
-.header-image-avatar {
-    width: 250px;
-    height: 250px;
-    border: 5px solid white;
-    margin-top: 30px;
-    background-color: $bootstrap-blue;
-}
-
-.header-image-text {
-    padding: 0 15px;
-    background: rgba(255, 255, 255, 0.7);
-    display: inline-block;
-    margin-top: 30px;
+.container-fill-item {
+    height: calc(100% - 200px);
 }
 
 .lead.lead-abstract {
@@ -108,42 +35,8 @@ a:hover {
     overflow: hidden;
 }
 
-.wikipedia-article {
-    .mw-gallery-traditional {
-        display: none;
-    }
-}
-
 .btn {
     white-space: normal;
-}
-
-.media-grid {
-
-}
-
-.media-grid-thumb {
-    width: 100%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 200px;
-    @include bg-cover;
-}
-
-.item-image-container {
-    background-color: black;
-    overflow: hidden;
-}
-
-.item-image {
-    @include bg-cover;
-    opacity: 0;
-    @include transition(1s);
-
-    &.item-image-loaded {
-        opacity: 1;
-    }
 }
 
 .bg-light {

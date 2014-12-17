@@ -2,7 +2,7 @@
 use \Httpful\Request;
 
 class Page {
-    public $root, $lang, $title, $fullurl;
+    public $root, $lang, $title, $fullurl, $errorCode;
     private $langcodes;
 
     function __construct() {
@@ -12,6 +12,10 @@ class Page {
         $this->fullurl = $this->root;
         $this->langcodes = json_decode(file_get_contents(ABSPATH . '/data/langcodes.json'));
         $this->lang = $this->getLanguage();
+    }
+
+    public function setErrorCode($code) {
+        $this->errorCode = $code;
     }
 
     private function getLanguage() {

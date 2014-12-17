@@ -1,0 +1,46 @@
+.header-logotype {
+    font-family: $font-headers;
+    color: $bootstrap-blue;
+    letter-spacing: 1px;
+    border-bottom: 3px double $bootstrap-blue;
+    padding-bottom: 5px;
+}
+
+.header-image-background, .header-image-avatar {
+    @include bg-cover;
+}
+
+.header-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.header-image, .header-image-background {
+    height: 300px;
+    width: 100%;
+    background-color: #000;
+}
+
+.header-image-background {
+    position: absolute;
+    @include filter(blur(4px));
+    height: 350px;
+    width: 110%;
+    top: -25px;
+    left: -25px;
+}
+
+.header-image-avatar {
+    width: 250px;
+    height: 250px;
+    border: 5px solid white;
+    margin-top: 30px;
+    background-color: $bootstrap-blue;
+}
+
+.header-image-text {
+    padding: 0 15px;
+    background: rgba(255, 255, 255, 0.7);
+    display: inline-block;
+    margin-top: 30px;
+}

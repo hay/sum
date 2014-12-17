@@ -1,0 +1,18 @@
+.navbar-inverse {
+    background-color: rgba(51,122,183, 0.9);
+    border-color: $bootstrap-blue;
+    margin-bottom: 0;
+
+    .navbar-brand {
+        color: white;
+        font-family: $font-headers;
+    }
+
+    .glyphicon, .navbar-nav li > a {
+        color: white;
+    }
+
+    .btn .glyphicon {
+        color: $bootstrap-blue;
+    }
+}

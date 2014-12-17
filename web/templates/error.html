@@ -1,0 +1,17 @@
+{% include 'header.html' %}
+
+<div class="container-fluid container-fill-item">
+    <h1>Sorry.</h1>
+
+    <p class="lead">
+        {% if errorCode == 500 %}
+            Something went wrong when trying to load this page. This is not your fault.
+        {% elseif errorCode == 404 %}
+            The page could not be found.
+        {% else %}
+            An error occured that we can't really pinpoint. Sorry about that.
+        {% endif %}
+    </p>
+</div>
+
+{% include 'footer.html' %}
