@@ -1,2 +1,11 @@
 #!/bin/bash
+ssh pris <<'ENDSSH'
+sudo chown -R hay:www-data /var/www/sum.bykr.org
+ENDSSH
+
 rsync -avz --exclude "config.php" --exclude ".git" --exclude ".sass-cache" ../web/* pris:/var/www/sum.bykr.org/htdocs/
+
+ssh pris <<'ENDSSH'
+sudo chown -R www-data:www-data /var/www/sum.bykr.org
+sudo rm -rf /var/www/sum.bykr.org/htdocs/cache/*
+ENDSSH
