@@ -18,24 +18,35 @@
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
-            <form action="{{root}}" class="navbar-form navbar-right" method="get" role="search">
-                <div class="input-group">
-                    <input type="text" name="q" id="q" class="form-control" placeholder="Search">
-
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-                </div>
-            </form>
-
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#"
+                       data-toggle="modal"
+                       data-target="#language-modal"
+                    >
+                        <span class="glyphicon glyphicon-flag"></span>
+                        {{langlabel}}
+                        <span class="caret"></span>
+                    </a>
+                </li>
                 <li>
                     <a href="http://wikidata.org/wiki/{{item.id}}">
                         <span class="glyphicon glyphicon-barcode"></span>
                         Edit
                     </a>
+                </li>
+                <li>
+                    <form action="{{root}}" class="navbar-form navbar-right" method="get" role="search">
+                        <div class="input-group">
+                            <input type="text" name="q" id="q" class="form-control" placeholder="Search">
+
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
                 </li>
             </ul>
         </div>

@@ -9,6 +9,7 @@
     require 'version.php';
     require 'vendor/autoload.php';
     require 'lib/class-properties.php';
+    require 'lib/class-settings.php';
     require 'lib/class-items.php';
     require 'lib/class-page.php';
     require 'lib/class-wikidataitem.php';

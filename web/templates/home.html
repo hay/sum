@@ -17,6 +17,20 @@
                 <div class="input-group input-group-lg">
                     <input type="text" id="q" name="q" class="form-control" placeholder="Search 13,000,000 items" value="{{q}}">
 
+                    {#
+                    <div class="input-group-btn">
+                        <button class="btn btn-default"
+                                type="button"
+                                data-toggle="modal"
+                                data-target="#language-modal"
+                                style="border-left: 0;"
+                        >
+                            {{langlabel}}
+                            <span class="caret"></span>
+                        </button>
+                    </div>
+                    #}
+
                     <span class="input-group-btn">
                         <button class="btn btn-default">
                             <span class="glyphicon glyphicon-search"></span>
@@ -65,3 +79,5 @@
         </ul>
     </div>
 </footer>
+
+{% include 'footer.html' %}

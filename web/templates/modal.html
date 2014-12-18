@@ -1,0 +1,26 @@
+<div id="language-modal" class="modal fade bs-modal-lg" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+
+                <h3 class="modal-title">Choose your language</h3>
+            </div>
+
+            <div class="modal-body">
+                <ul class="list-columns">
+                    {% for code, label in langcodes %}
+                    <li>
+                        <a href="{{fullurl}}?lang={{code}}"
+                           class="btn {% if code == lang %}btn-primary{% endif %}">
+                            {{label}}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

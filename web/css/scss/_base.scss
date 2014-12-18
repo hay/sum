@@ -63,3 +63,15 @@ a:hover {
         padding-bottom: 5px;
     }
 }
+
+.list-columns {
+    @include respond-from($screen-sm) {
+        @include column-count(5);
+    }
+
+    @include respond-until($screen-sm) {
+        @include column-count(2);
+    }
+    padding: 0;
+    list-style: none;
+}

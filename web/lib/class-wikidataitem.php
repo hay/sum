@@ -35,7 +35,7 @@ class WikidataItem {
 
             if ($value->datatype == "wikibase-item") {
                 return [
-                    "label" => $value->value_labels,
+                    "label" => isset($value->value_labels) ? $value->value_labels : false,
                     "id" => $value->value
                 ];
             }

@@ -26,7 +26,7 @@ class WikipediaArticle {
 
         $res = Request::get($url)->send();
 
-        if (!$res->body->response) {
+        if (!isset($res->body->response)) {
             throw new Exception("No article available for this id");
         }
 
