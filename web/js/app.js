@@ -78,6 +78,11 @@
         })
     }
 
+    function fastClick() {
+        FastClick.attach(document.body);
+    }
+
+    fastClick();
     loadWorkImage();
     photoswipe();
     searchclear();

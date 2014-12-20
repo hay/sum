@@ -37,14 +37,21 @@ a:hover {
 
 .search-clear {
     position: absolute;
-    color: #999 !important;
     opacity: 0;
     cursor: pointer;
     z-index: 2;
-    top: 6px;
-    right: 50px;
-    font-size: 20px;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    right: 40px;
     @include transition(200ms opacity);
+
+    .glyphicon {
+        top: 7px;
+        left: 10px;
+        font-size: 20px;
+        color: #aaa !important;
+    }
 
     &.show {
         opacity: 1;
@@ -52,9 +59,14 @@ a:hover {
 }
 
 .search-clear-lg {
-    font-size: 25px;
-    right: 64px;
-    top: 12px;
+    width: 50px;
+    right: 51px;
+
+    .glyphicon {
+        font-size: 25px;
+        top: 8px;
+        left: 11px;
+    }
 }
 
 .img-zoomable {
