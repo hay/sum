@@ -35,6 +35,28 @@ a:hover {
     overflow: hidden;
 }
 
+.search-clear {
+    position: absolute;
+    color: #999 !important;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+    top: 6px;
+    right: 50px;
+    font-size: 20px;
+    @include transition(200ms opacity);
+
+    &.show {
+        opacity: 1;
+    }
+}
+
+.search-clear-lg {
+    font-size: 25px;
+    right: 64px;
+    top: 12px;
+}
+
 .img-zoomable {
     cursor: pointer;
 }
