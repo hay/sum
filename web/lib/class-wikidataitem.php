@@ -63,6 +63,8 @@ class WikidataItem {
     }
 
     public function getClaim($pid) {
+        if (!isset($this->item->claims)) return false;
+
         foreach ($this->item->claims as $claim) {
             if ($claim->property_id == $pid) {
                 return $claim;

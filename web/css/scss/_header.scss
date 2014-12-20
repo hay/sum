@@ -15,6 +15,12 @@
     overflow: hidden;
 }
 
+.header-image-noimage {
+    background-color: $bootstrap-blue;
+    width: 100%;
+    height: auto;
+}
+
 .header-image, .header-image-background {
     height: 300px;
     width: 100%;

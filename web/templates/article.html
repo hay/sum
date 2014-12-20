@@ -1,6 +1,7 @@
 {% include 'header.html' %}
 {% include 'navbar.html' %}
 
+{% if article.thumbnail %}
 <div class="header-image">
     <div class="header-image-background"
          style="background-image:url('{{article.firstimage.thumb}}')"></div>
@@ -25,6 +26,26 @@
         </div>
     </div>
 </div>
+{% else %}
+<div class="header-image-noimage">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="header-image-text">
+                    {% if item.labels %}
+                    <h1>{{item.labels}}</h1>
+                    {% endif %}
+
+                    {% if item.descriptions %}
+                    <p class="lead">{{item.descriptions}}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
 
 {% include 'wikipedia-article.html' %}
 {% include 'navbar-footer.html' %}

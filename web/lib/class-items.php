@@ -12,4 +12,13 @@ class Items {
     public static $creator = [
         [ Properties::OCCUPATION => self::PAINTER ]
     ];
+
+    public static $featured = [
+        5599, // Rubens
+        328523, // Monet painting
+        727, // Amsterdam
+        160112, // Prado
+        205001, // Talking Heads
+        160422 // Theo van Doesburg
+    ];
 }

@@ -32,14 +32,16 @@ class WikipediaArticle {
 
         $article = $res->body->response;
 
-        $article->images = array_filter($article->images, function($img) {
-            $path = pathinfo($img->title);
-            $ext = strtolower($path['extension']);
-            return $ext == "jpg" || $ext == "png" || $ext == "gif";
-        });
+        if ($article->images) {
+            $article->images = array_filter($article->images, function($img) {
+                $path = pathinfo($img->title);
+                $ext = strtolower($path['extension']);
+                return $ext == "jpg" || $ext == "png" || $ext == "gif";
+            });
 
-        $article->images = array_values($article->images);
-        $article->firstimage = !empty($article->images) ? $article->images[0] : false;
+            $article->images = array_values($article->images);
+            $article->firstimage = !empty($article->images) ? $article->images[0] : false;
+        }
 
         return $article;
     }
