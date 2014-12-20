@@ -9,7 +9,10 @@
 
             <div class="col-md-4">
                 {% for image in article.images %}
-                    <img src="{{image.thumb}}" class="img-thumbnail buffer-bottom-1">
+                    <img src="{{image.thumb}}"
+                         class="img-zoomable img-thumbnail buffer-bottom-1"
+                         data-fullsize="{{image.url}}"
+                    >
                 {% endfor %}
             </div>
         </div>

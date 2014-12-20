@@ -5,6 +5,7 @@
     "bootstrap": "3.3.*",
     "fastclick": "1.*",
     "jquery": "2.1.*",
-    "valenski": "*"
+    "valenski": "*",
+    "photoswipe": "~4.0.1"
   }
 }
