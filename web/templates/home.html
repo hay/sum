@@ -56,13 +56,20 @@
                         No items found for "<strong>{{q}}</strong>".
                     </div>
                 {% else %}
-                    <h2 class="buffer-top-4 text-center">Examples</h2>
+                    <h2 class="buffer-top-4 text-center">Featured examples</h2>
 
-                    <ul class="list-unstyled text-center">
-                        <li><a href="219831">The Night Watch</a></li>
-                        <li><a href="1170315">Black Square</a></li>
-                        <li><a href="157541">Sunflowers</a></li>
-                    </ul>
+                    <div class="row buffer-bottom-4">
+                        {% for item in featured %}
+                        <div class="col-md-4">
+                            <a href="{{root}}/{{item.id}}">
+                                <h3>{{item.labels}}</h3>
+                                <div class="media-grid-thumb"
+                                     style="background-image:url('{{item.image.thumb}}')"
+                                ></div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
                 {% endif %}
             {% endif %}
         </div>

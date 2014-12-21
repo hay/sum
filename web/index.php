@@ -18,6 +18,7 @@
     require 'lib/class-wikidataquery.php';
     require 'lib/class-item.php';
     require 'lib/class-searchresult.php';
+    require 'lib/class-homepage.php';
 
     $app = new \Slim\Slim();
 
@@ -80,7 +81,7 @@
             $q = $app->request->get('q');
             render("home", new SearchResult($q));
         } else {
-            render("home", new Page());
+            render("home", new Homepage());
         }
     });
 
