@@ -35,15 +35,26 @@ class Item extends Page  {
             $this->wditem->addValues(Properties::$creator);
 
             $query = new WikidataQuery(sprintf(
-                "CLAIM[%s:%s] AND CLAIM[%s]",
+                "(CLAIM[%s:%s] AND CLAIM[%s]) OR (CLAIM[%s:%s]) OR (CLAIM[%s:%s]) OR (CLAIM[%s:%s])",
                 substr(Properties::CREATOR, 1),
                 $this->qid,
-                substr(Properties::IMAGE, 1)
+                substr(Properties::IMAGE, 1),
+                substr(Properties::DIRECTOR, 1),
+                $this->qid,
+                substr(Properties::CAST_MEMBER, 1),
+                $this->qid,
+                substr(Properties::AUTHOR, 1),
+                $this->qid
             ), $this->lang);
 
             $this->item->works = $query->getResultData();
 
-            return "creator";
+            return "person";
+        }
+
+        if ($this->wditem->hasClaimWhere(Items::$person)) {
+            $this->wditem->addValues(Properties::$person);
+            return "person";
         }
 
         if ($this->wditem->getClaim(Properties::COMMONS_INSTITUTION_PAGE)) {

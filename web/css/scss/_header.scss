@@ -15,16 +15,12 @@
     overflow: hidden;
 }
 
+.header-image,
+.header-image-background,
 .header-image-noimage {
-    background-color: $bootstrap-blue;
-    width: 100%;
-    height: auto;
-}
-
-.header-image, .header-image-background {
-    height: 300px;
     width: 100%;
     background-color: #000;
+    padding-bottom: 30px;
 }
 
 .header-image-background {
@@ -45,7 +41,7 @@
 }
 
 .header-image-text {
-    padding: 0 15px;
+    padding: 0 15px 15px 15px;
     background: rgba(255, 255, 255, 0.7);
     display: inline-block;
     margin-top: 30px;

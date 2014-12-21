@@ -16,3 +16,19 @@
         </dd>
     {% endif %}
 {% endmacro %}
+
+{% macro itemprop(label, items) %}
+    {% if items %}
+    <div class="itemprop">
+        <strong>{{label}}:</strong>
+        {% for item in items %}
+            {% if item.id %}
+                <a href="{{item.id}}">{{item.label}}</a>{% if not loop.last %},{% endif %}
+            {% else %}
+                {{item}}
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+{% endmacro %}

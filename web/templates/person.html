@@ -1,8 +1,14 @@
+{% import "macros.html" as macros %}
 {% include 'header.html' %}
 {% include 'navbar.html' %}
 
 <div class="header-image">
-    <div class="header-image-background" style="background-image:url('{{item.works[0].image.thumb}}')"></div>
+    {% if item.works %}
+    <div class="header-image-background"
+         style="background-image:url('{{item.works[0].image.thumb}}')"
+    ></div>
+    {% endif %}
+
     <div class="container">
         <div class="row">
             {% if item.image.thumb %}
@@ -41,17 +47,21 @@
                     </h3>
 
                     <p class="lead">{{item.descriptions}}</p>
+
+                    {{ macros.itemprop("Child", item.child) }}
+                    {{ macros.itemprop("Spouse", item.spouse) }}
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+{% if item.works %}
 <div class="bg-light bg-spaced media-grid">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="text-center">Works by {{item.labels}}</h2>
+                <h2 class="text-center">Works with or by {{item.labels}}</h2>
 
                 {% for work in item.works %}
                 <a class="col-md-3" href="work/{{work.id}}">
@@ -67,6 +77,7 @@
         </div>
     </div>
 </div>
+{% endif %}
 
 {% include 'wikipedia-article.html' %}
 {% include 'navbar-footer.html' %}

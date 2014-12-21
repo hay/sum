@@ -21,6 +21,12 @@ class Properties {
     const LOCATION = "P625";
     const TERRITORY = "P131";
     const COMMONS_INSTITUTION_PAGE = "P1612";
+    const COMMONS_CATEGORY = "P373";
+    const CAST_MEMBER = "P161";
+    const DIRECTOR = "P57";
+    const CHILD = "P40";
+    const SPOUSE = "P26";
+    const AUTHOR = "P50";
 
     public static $work = [
         "location" => self::LOCATION,
@@ -37,12 +43,17 @@ class Properties {
         "iconclass" => self::ICONCLASS
     ];
 
-    public static $creator = [
+    public static $person = [
         "placeOfBirth" => self::PLACEOFBIRTH,
         "dateOfBirth" => self::DATEOFBIRTH,
         "placeOfDeath" => self::PLACEOFDEATH,
         "dateOfDeath" => self::DATEOFDEATH,
         "country" => self::COUNTRY,
+        "child" => self::CHILD,
+        "spouse" => self::SPOUSE
+    ];
+
+    public static $creator = [
         "movement" => self::MOVEMENT,
     ];
 
@@ -53,4 +64,9 @@ class Properties {
         "date" => self::DATE
     ];
 
+    public static function init() {
+        self::$creator = array_merge(self::$person, self::$creator);
+    }
 }
+
+Properties::init();

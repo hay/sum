@@ -1,3 +1,4 @@
+{% import "macros.html" as macros %}
 {% include 'header.html' %}
 {% include 'navbar.html' %}
 
@@ -55,8 +56,6 @@
                 <br><br>
 
                 <div class="dl-horizontal">
-                    {% import "macros.html" as macros %}
-
                     {{ macros.dlitem("Collection", item.collection) }}
                     {{ macros.dlitem("Located in", item.locatedin) }}
                     {{ macros.dlitem("Country", item.country) }}
