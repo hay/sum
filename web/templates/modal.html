@@ -11,6 +11,26 @@
 
             <div class="modal-body">
                 <ul class="list-columns">
+                    {% for code, label in langcodesPrimary %}
+                    <li>
+                        <a href="{{fullurl}}?lang={{code}}"
+                           class="btn {% if code == lang %}btn-primary{% endif %}">
+                            {{label}}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <button type="button"
+                        class="btn btn-primary center-block"
+                        data-toggle="collapse"
+                        data-target="#alllanguages"
+
+                >
+                    Show all languages
+                </button>
+
+                <ul id="alllanguages" class="list-columns collapse">
                     {% for code, label in langcodes %}
                     <li>
                         <a href="{{fullurl}}?lang={{code}}"

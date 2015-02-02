@@ -12,6 +12,12 @@ class Page {
         $this->title = "The Sum of All Knowledge";
         $this->fullurl = $this->root;
         $this->langcodes = $this->getLangCodes();
+        $this->langcodesPrimary = [];
+
+        foreach (Config::$primaryLanguages as $code) {
+            $this->langcodesPrimary[$code] = $this->langcodes[$code];
+        }
+
         $this->lang = $this->getLanguage();
         $this->langlabel = $this->langcodes[$this->lang];
     }
