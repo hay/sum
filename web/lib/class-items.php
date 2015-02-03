@@ -23,13 +23,4 @@ class Items {
         [ Properties::OCCUPATION => self::FILM_DIRECTOR ],
         [ Properties::OCCUPATION => self::WRITER ]
     ];
-
-    public static $featured = [
-        5599,
-        328523,
-        7378,
-        160112,
-        202765,
-        6663
-    ];
 }
