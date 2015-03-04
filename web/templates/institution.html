@@ -1,3 +1,4 @@
+{% import "macros.html" as macros %}
 {% include 'header.html' %}
 {% include 'navbar.html' %}
 
@@ -20,26 +21,7 @@
     </div>
 </div>
 
-<div class="bg-light bg-spaced media-grid">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="text-center">Works in {{item.labels}}</h2>
-
-                {% for work in item.works %}
-                <a class="col-md-3" href="work/{{work.id}}">
-                    <span class="media-grid-thumb" style="background-image:url('{{work.image.thumb}}')"></span>
-
-                    <h3>
-                        {{work.labels}}
-                        {{work.year}}
-                    </h3>
-                </a>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</div>
+{{ macros.querylist("Works in", item) }}
 
 <div class="media-grid-thumb" style="background-image:url('//maps.googleapis.com/maps/api/staticmap?center={{item.location.0.latitude}},{{item.location.0.longitude}}&amp;zoom=14&amp;size=1200x300&amp;markers=color:blue|label={{item.labels}}|{{item.location.0.latitude}},{{item.location.0.longitude}}')"></div>
 

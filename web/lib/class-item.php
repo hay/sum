@@ -34,20 +34,24 @@ class Item extends Page  {
         if ($this->wditem->hasClaimWhere(Items::$creator)) {
             $this->wditem->addValues(Properties::$creator);
 
-            $query = new WikidataQuery(sprintf(
-                "(CLAIM[%s:%s] AND CLAIM[%s]) OR (CLAIM[%s:%s]) OR (CLAIM[%s:%s]) OR (CLAIM[%s:%s])",
-                substr(Properties::CREATOR, 1),
-                $this->qid,
-                substr(Properties::IMAGE, 1),
-                substr(Properties::DIRECTOR, 1),
-                $this->qid,
-                substr(Properties::CAST_MEMBER, 1),
-                $this->qid,
-                substr(Properties::AUTHOR, 1),
-                $this->qid
-            ), $this->lang);
+            if (USE_WDQ) {
+                $query = new WikidataQuery(sprintf(
+                    "(CLAIM[%s:%s] AND CLAIM[%s]) OR (CLAIM[%s:%s]) OR (CLAIM[%s:%s]) OR (CLAIM[%s:%s])",
+                    substr(Properties::CREATOR, 1),
+                    $this->qid,
+                    substr(Properties::IMAGE, 1),
+                    substr(Properties::DIRECTOR, 1),
+                    $this->qid,
+                    substr(Properties::CAST_MEMBER, 1),
+                    $this->qid,
+                    substr(Properties::AUTHOR, 1),
+                    $this->qid
+                ), $this->lang);
 
-            $this->item->works = $query->getResultData();
+                $this->item->works = $query->getResultData();
+            } else {
+                $this->item->query = sprintf("%s,%s", Properties::CREATOR, "Q$this->qid");
+            }
 
             return "person";
         }
@@ -60,14 +64,18 @@ class Item extends Page  {
         if ($this->wditem->getClaim(Properties::COMMONS_INSTITUTION_PAGE)) {
             $this->wditem->addValues(Properties::$institution);
 
-            $query = new WikidataQuery(sprintf(
-                "CLAIM[%s:%s] OR CLAIM[%s:%s] AND CLAIM[%s]",
-                substr(Properties::COLLECTION, 1), $this->qid,
-                substr(Properties::LOCATEDIN, 1), $this->qid,
-                substr(Properties::IMAGE, 1)
-            ), $this->lang);
+            if (USE_WDQ) {
+                $query = new WikidataQuery(sprintf(
+                    "CLAIM[%s:%s] OR CLAIM[%s:%s] AND CLAIM[%s]",
+                    substr(Properties::COLLECTION, 1), $this->qid,
+                    substr(Properties::LOCATEDIN, 1), $this->qid,
+                    substr(Properties::IMAGE, 1)
+                ), $this->lang);
 
-            $this->item->works = $query->getResultData();
+                $this->item->works = $query->getResultData();
+            } else {
+                $this->item->query = sprintf("%s,%s", Properties::COLLECTION, "Q$this->qid");
+            }
 
             return "institution";
         }

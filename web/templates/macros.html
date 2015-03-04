@@ -32,3 +32,56 @@
     </div>
     {% endif %}
 {% endmacro %}
+
+{% macro querylist(headline, item) %}
+    {% if item.works %}
+    <div class="bg-light bg-spaced media-grid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-center">{{headline}} {{item.labels}}</h2>
+
+                    {% for work in item.works %}
+                    <a class="col-md-3" href="work/{{work.id}}">
+                        <span class="media-grid-thumb" style="background-image:url('{{work.image.thumb}}')"></span>
+
+                        <h3>
+                            {{work.labels}}
+                            {{work.year}}
+                        </h3>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div id="fastquery" class="bg-light bg-spaced media-grid" data-query="{{item.query}}"></div>
+    <script type="text/html" id="fastquery-tmpl">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">{{headline}} {{item.labels}}</h2>
+
+                {% verbatim %}
+                {{#items}}
+                <a class="col-md-3" href="work/{{id}}">
+                    <span class="media-grid-thumb" style="background-image:url('{{image}}')"></span>
+
+                    <h3>
+                        {{label}}
+                        {{description}}
+                    </h3>
+                </a>
+                {{/items}}
+                {% endverbatim %}
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button id="show-all-works" class="btn btn-primary">Show more</button>
+        </div>
+    </div>
+    </script>
+    {% endif %}
+{% endmacro %}

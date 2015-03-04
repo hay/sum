@@ -6,6 +6,7 @@
     "fastclick": "~1.0.3",
     "jquery": "2.1.*",
     "valenski": "*",
-    "photoswipe": "~4.0.1"
+    "photoswipe": "~4.0.1",
+    "handlebars": "~3.0.0"
   }
 }

@@ -1,4 +1,6 @@
 (function() {
+    var lang = $("html").attr('lang');
+
     function loadWorkImage() {
         var $itemImage = $(".item-image");
         if (!$itemImage.length) return;
@@ -82,8 +84,41 @@
         FastClick.attach(document.body);
     }
 
+    function fastQuery() {
+        if ($("#fastquery").length === 0) return;
+
+        $("#fastquery").on('click', '#show-all-works', function() {
+            $(this).hide();
+            $("#fastquery a").fadeIn();
+        });
+
+        var tmpl = Handlebars.compile( $("#fastquery-tmpl").html() );
+        var query = $("#fastquery").attr('data-query').split(',');
+        var url = 'http://tools.wmflabs.org/hay/wdskim/?prop=' + query[0] + '&item=' + query[1] + '&language=' + lang + '&withimages=on&format=json';
+
+        $.getJSON(url, function(data) {
+            if (data.items.length === 0) return;
+
+            var items = [];
+
+            for (var key in data.items) {
+                var item = data.items[key];
+                item.image = '//commons.wikimedia.org/wiki/Special:Redirect/file/' + item.image + '?width=300';
+                item.image = item.image.replace("'", "\\'");
+                items.push(item);
+            }
+
+            var html = tmpl({ items : items });
+            var $html = $(html);
+            $html.find("a:gt(3)").hide();
+
+            $("#fastquery").html( $html );
+        });
+    }
+
     fastClick();
     loadWorkImage();
     photoswipe();
     searchclear();
+    fastQuery();
 })();

@@ -56,28 +56,7 @@
     </div>
 </div>
 
-{% if item.works %}
-<div class="bg-light bg-spaced media-grid">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="text-center">Works with or by {{item.labels}}</h2>
-
-                {% for work in item.works %}
-                <a class="col-md-3" href="work/{{work.id}}">
-                    <span class="media-grid-thumb" style="background-image:url('{{work.image.thumb}}')"></span>
-
-                    <h3>
-                        {{work.labels}}
-                        {{work.year}}
-                    </h3>
-                </a>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</div>
-{% endif %}
+{{ macros.querylist("Works with or by", item) }}
 
 {% include 'wikipedia-article.html' %}
 {% include 'navbar-footer.html' %}
