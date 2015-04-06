@@ -35,7 +35,13 @@ class WikipediaArticle {
         if ($article->images) {
             $article->images = array_filter($article->images, function($img) {
                 $path = pathinfo($img->title);
+
+                if (!isset($path['extension'])) {
+                    return false;
+                }
+
                 $ext = strtolower($path['extension']);
+
                 return $ext == "jpg" || $ext == "png" || $ext == "gif";
             });
 
