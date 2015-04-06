@@ -5,7 +5,7 @@
         $_SERVER['HTTP_HOST'],
         str_replace("/index.php", "", $_SERVER['PHP_SELF'])
     ));
-    define('API_ENDPOINT', 'http://chantek.bykr.org');
+    define('API_ENDPOINT', 'http://api.haykranen.nl');
     define('DEFAULT_LANGUAGE', 'en');
     define('DEBUG', false);
 
