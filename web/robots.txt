@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /cache
+Disallow: /lib
+Disallow: /templates
+Disallow: /vendor
